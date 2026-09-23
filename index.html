@@ -4,8 +4,9 @@
   -------------------------------------------------------------------
   · Paleta: taupe/bronce #937E5E + verde petróleo #2D464A + crema.
     Tipos: Satoshi (títulos) + Inter (cuerpo) + Archivo (logo).
-  · IMÁGENES: enlazadas al template (framerusercontent.com). Para
-    producción súbelas a la Mediateca y cambia el src. ←EDITAR
+  · IMÁGENES: hero enlazado al template (framerusercontent.com); el resto
+    son fotos lifestyle de stock (Unsplash, con fallback). Para producción
+    súbelas a la Mediateca y cambia el src. ←EDITAR
   · Calculadora ISD por comunidad × grupo de parentesco (estimación).
   · Scopeado bajo #ll → no choca con el tema de WordPress.
   · Para Elementor: pega <style>…</style> + <div id="ll">…</div> + <script>…</script>.
@@ -373,7 +374,8 @@ html,body{margin:0;padding:0}
 #ll .mrow{display:flex; justify-content:space-between; align-items:flex-end; gap:10px}
 #ll .mi b{display:block; font-family:'Satoshi'; font-weight:500; font-size:20px; letter-spacing:-.02em; margin-bottom:2px; color:#fff}
 #ll .mi span{font-size:13px; color:var(--pale)}
-#ll .mi a{width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.45); display:grid; place-items:center; flex-shrink:0; color:#fff; transition:background .2s, color .2s, border-color .2s}
+#ll .mi a{width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.45); display:grid; place-items:center; flex-shrink:0; color:#fff; opacity:0; transform:scale(.6) rotate(-20deg); transition:background .2s, color .2s, border-color .2s, opacity .35s, transform .5s cubic-bezier(.34,1.56,.64,1)}
+#ll .member.open .mi a{opacity:1; transform:none}
 #ll .mi a:hover{background:#fff; color:var(--green-d); border-color:#fff}
 #ll .member.open .mov{background:linear-gradient(180deg,rgba(24,24,24,.05) 15%,rgba(24,24,24,.55) 50%,rgba(24,24,24,.95) 100%)}
 #ll .member.open .ph img{transform:scale(1.05); filter:none}
@@ -385,6 +387,7 @@ html,body{margin:0;padding:0}
   #ll .member:hover .mov{background:linear-gradient(180deg,rgba(24,24,24,.05) 15%,rgba(24,24,24,.55) 50%,rgba(24,24,24,.95) 100%)}
   #ll .member:hover .mq{grid-template-rows:1fr; opacity:1}
   #ll .member:hover .mq p{padding-bottom:16px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,.18)}
+  #ll .member:hover .mi a{opacity:1; transform:none}
 }
 
 /* Local */
@@ -629,7 +632,7 @@ html,body{margin:0;padding:0}
               </div>
               <div class="mega-feat">
                 <!-- ←EDITAR src -->
-                <img src="https://framerusercontent.com/images/tAxeWlqfhf7vnZa9GZ6vh1oYY3k.png?width=1200&amp;height=840" alt="" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'">
                 <div>
                   <b>¿No sabes por dónde empezar?</b>
                   <p>Calcula en 1 minuto lo que te corresponde y cuánto puedes ahorrar en impuestos. Sin datos personales.</p>
@@ -649,7 +652,7 @@ html,body{margin:0;padding:0}
               <h3>Somos <em>Lienzo Legal</em></h3>
               <p class="mega-sub">Abogados y fiscalistas especializados en herencias</p>
               <!-- ←EDITAR src: foto real del equipo -->
-              <img src="https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800" alt="Equipo de Lienzo Legal" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=900&q=80&auto=format&fit=crop" alt="Equipo de Lienzo Legal" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'">
               <p class="mega-txt">Ayudamos a familias a resolver su herencia sin papeleos, con precio cerrado y pagando el mínimo legal. Menos tecnicismos, más tranquilidad.</p>
               <div class="mega-seals"><span><img class="glogo" src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" width="16" height="16" loading="lazy" onerror="this.style.display='none'">4,9 en Google</span><span>+500 herencias</span><span>Abogados colegiados</span></div>
               <div class="mega-actions"><a href="#local" class="btn btn-white">Contactar</a><a href="#equipo" class="btn btn-ghost">Conocer al equipo</a></div>
@@ -758,7 +761,7 @@ html,body{margin:0;padding:0}
         </ol>
         <div class="proc-visual">
           <!-- ←EDITAR src -->
-          <div class="proc-img"><img src="https://framerusercontent.com/images/Mud170avDSkPA3GxsRwZHYIlU.png?width=2400&amp;height=2400" alt="Proceso de gestión de herencia" loading="lazy"></div>
+          <div class="proc-img"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1000&q=80&auto=format&fit=crop" alt="Proceso de gestión de herencia" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"></div>
         </div>
       </div>
     </div>
@@ -770,7 +773,7 @@ html,body{margin:0;padding:0}
       <div class="head"><h2 class="sec-h2">Una palabra de nuestro equipo</h2></div>
       <div class="quote-grid">
         <!-- ←EDITAR src: foto real del equipo -->
-        <div class="quote-img"><img src="https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=2816&amp;height=1536" alt="Equipo de Lienzo Legal" loading="lazy"></div>
+        <div class="quote-img"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&q=80&auto=format&fit=crop" alt="Equipo de Lienzo Legal" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"></div>
         <div class="quote-body">
           <div>
             <blockquote>“Gestionar una herencia no va solo de leyes. Va de acompañar a una familia para que decida tranquila, sin sustos y pagando lo justo.”</blockquote>
@@ -801,7 +804,7 @@ html,body{margin:0;padding:0}
       </div>
       <!-- ←EDITAR data-yt: ID del vídeo de YouTube (lo que va tras v=) y la imagen de portada -->
       <div class="video-frame" id="vidframe" data-yt="VIDEO_ID">
-        <img class="video-poster" src="https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=2816&amp;height=1536" alt="" loading="lazy">
+        <img class="video-poster" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1400&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'">
         <div class="vov"></div>
         <button class="video-play" aria-label="Reproducir vídeo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
@@ -998,7 +1001,7 @@ html,body{margin:0;padding:0}
       <!-- ←EDITAR: fotos de stock (Unsplash); sustituir por imágenes propias -->
       <div class="case-grid">
         <article class="case-card" tabindex="0">
-          <img class="case-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80" alt="" loading="lazy">
+          <img class="case-img" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'">
           <div class="case-ov"></div>
           <div class="case-cover">
             <div class="case-tags"><span>Madrid</span><span>4 hermanos</span><span>Vivienda + cuentas</span></div>
@@ -1016,7 +1019,7 @@ html,body{margin:0;padding:0}
           </div>
         </article>
         <article class="case-card" tabindex="0">
-          <img class="case-img" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=900&q=80" alt="" loading="lazy">
+          <img class="case-img" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'">
           <div class="case-ov"></div>
           <div class="case-cover">
             <div class="case-tags"><span>Cataluña</span><span>Cónyuge</span><span>Vivienda habitual</span></div>
@@ -1034,7 +1037,7 @@ html,body{margin:0;padding:0}
           </div>
         </article>
         <article class="case-card" tabindex="0">
-          <img class="case-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80" alt="" loading="lazy">
+          <img class="case-img" src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'">
           <div class="case-ov"></div>
           <div class="case-cover">
             <div class="case-tags"><span>Andalucía</span><span>Proindiviso</span><span>3 herederos</span></div>
@@ -1065,19 +1068,19 @@ html,body{margin:0;padding:0}
       <!-- ←EDITAR: nombres, cargos y fotos reales del equipo (fotos actuales: stock de Unsplash) -->
       <div class="team-grid">
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" alt="Mikel Aramburu" loading="lazy"><div class="mov"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=800&q=80&auto=format&fit=crop" alt="Mikel Aramburu" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"><div class="mov"></div>
           <div class="mi"><div class="mq"><p>“Una herencia bien gestionada es la que la familia olvida rápido.”</p></div><div class="mrow"><div><b>Mikel Aramburu</b><span>Responsable · Abogado sucesorio</span></div><a href="#" aria-label="LinkedIn de Mikel Aramburu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Laura Etxeberria" loading="lazy"><div class="mov"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80&auto=format&fit=crop" alt="Laura Etxeberria" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"><div class="mov"></div>
           <div class="mi"><div class="mq"><p>“Cada comunidad tiene sus reglas. Mi trabajo es que juegues con todas a favor.”</p></div><div class="mrow"><div><b>Laura Etxeberria</b><span>Abogada fiscalista</span></div><a href="#" aria-label="LinkedIn de Laura Etxeberria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Daniel Ortega" loading="lazy"><div class="mov"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&auto=format&fit=crop" alt="Daniel Ortega" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"><div class="mov"></div>
           <div class="mi"><div class="mq"><p>“Donde otros ven un bloqueo entre hermanos, yo veo un acuerdo pendiente.”</p></div><div class="mrow"><div><b>Daniel Ortega</b><span>Especialista en proindivisos</span></div><a href="#" aria-label="LinkedIn de Daniel Ortega"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80" alt="Carmen Ruiz" loading="lazy"><div class="mov"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80&auto=format&fit=crop" alt="Carmen Ruiz" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"><div class="mov"></div>
           <div class="mi"><div class="mq"><p>“Te llamo yo. Nunca tendrás que perseguirnos.”</p></div><div class="mrow"><div><b>Carmen Ruiz</b><span>Gestión y atención al cliente</span></div><a href="#" aria-label="LinkedIn de Carmen Ruiz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
       </div>
@@ -1089,8 +1092,8 @@ html,body{margin:0;padding:0}
     <div class="wrap">
       <div class="cards">
         <!-- ←EDITAR src -->
-        <a href="#calc" class="card"><img src="https://framerusercontent.com/images/tAxeWlqfhf7vnZa9GZ6vh1oYY3k.png?width=2400&amp;height=1680" alt="" loading="lazy"><div class="ov"></div><h3>Habla con nosotros</h3></a>
-        <a href="#equipo" class="card"><img src="https://framerusercontent.com/images/AVum7b2zQgoQDB3w0ALcIFg30zE.png?width=2816&amp;height=1536" alt="" loading="lazy"><div class="ov"></div><h3>Conócenos</h3></a>
+        <a href="#calc" class="card"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1400&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"><div class="ov"></div><h3>Habla con nosotros</h3></a>
+        <a href="#equipo" class="card"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1400&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'"><div class="ov"></div><h3>Conócenos</h3></a>
       </div>
     </div>
   </section>
@@ -1159,7 +1162,7 @@ html,body{margin:0;padding:0}
   <section class="final-sec">
     <div class="finalcta">
       <!-- ←EDITAR src -->
-      <img src="https://framerusercontent.com/images/ajoeznXeqMwLBWnZYTlZhxnPGE.png?width=2000&amp;height=2000" alt="" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=1800&q=80&auto=format&fit=crop" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800'">
       <div class="ov"></div>
       <div class="inner">
         <h2>Habla con quien te entiende</h2>
