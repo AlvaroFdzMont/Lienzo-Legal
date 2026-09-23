@@ -178,6 +178,7 @@ html,body{margin:0;padding:0}
 #ll .pstep.on .n::after{opacity:.55; transform:scale(1)}
 #ll .pbody{background:var(--white); border:1px solid var(--line); border-radius:14px; padding:22px 26px; transition:transform .6s cubic-bezier(.16,1,.3,1), box-shadow .6s ease, border-color .45s}
 #ll .pstep.on .pbody{border-color:transparent; box-shadow:0 28px 56px -32px rgba(45,70,74,.5); transform:translateX(8px)}
+#ll .pnum,#ll .pconn{display:none}
 #ll .pmeta{display:inline-flex; align-items:center; gap:7px; font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--brand-d); margin-bottom:8px}
 #ll .pmeta::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--brand)}
 #ll .pstep h3{font-size:22px; margin-bottom:6px}
@@ -534,9 +535,18 @@ html,body{margin:0;padding:0}
   #ll .proc-grid{gap:56px}
   #ll .proc-visual::before{display:none}
   #ll .pf1{left:12px} #ll .pf2{right:12px} #ll .pf3{left:12px}
-  #ll .pstep{grid-template-columns:44px 1fr; gap:14px}
-  #ll .pstep .n{width:44px; height:44px; font-size:14px}
-  #ll .tl-line{left:21px}
+  #ll .timeline{max-width:440px; margin:0 auto}
+  #ll .tl-line,#ll .pstep .n{display:none}
+  #ll .pstep{display:block; padding:0}
+  #ll .pstep:last-child{padding-bottom:0}
+  #ll .pbody{--p:0; position:relative; padding:2px; border:none; border-radius:16px; background:conic-gradient(from 0deg at 50% 50%, var(--brand) calc(var(--p)*1.8deg), var(--line) 0, var(--line) calc(360deg - var(--p)*1.8deg), var(--brand) 0); box-shadow:none; transform:none; transition:box-shadow .5s}
+  #ll .pstep.done .pbody{box-shadow:0 24px 50px -30px rgba(147,126,94,.55)}
+  #ll .pbody-in{background:var(--white); border-radius:14px; padding:22px 22px 22px}
+  #ll .pnum{display:grid; place-items:center; position:absolute; top:14px; right:14px; width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:var(--white); font-family:'Satoshi'; font-weight:500; font-size:13px; color:var(--muted); transition:background .4s, color .4s, border-color .4s, transform .5s cubic-bezier(.34,1.56,.64,1)}
+  #ll .pstep.done .pnum{background:var(--brand); border-color:var(--brand); color:#fff; transform:scale(1.08)}
+  #ll .pmeta{max-width:calc(100% - 48px)}
+  #ll .pconn{--c:0; display:block; position:relative; width:10px; height:44px; margin:0 auto; background:radial-gradient(circle at center, var(--line) 2.6px, transparent 3.2px) center/10px 11px repeat-y}
+  #ll .pconn::before{content:""; position:absolute; inset:0; background:radial-gradient(circle at center, var(--brand) 2.6px, transparent 3.2px) center/10px 11px repeat-y; clip-path:inset(0 0 calc(100% - var(--c)*1%) 0)}
   #ll .pfloat{display:none}
   #ll .proc-visual{width:100%; max-width:420px; margin:0 auto}
   #ll .proc-img{aspect-ratio:1}
@@ -708,30 +718,30 @@ html,body{margin:0;padding:0}
           <div class="tl-line" aria-hidden="true"><span id="tlFill"></span></div>
           <li class="pstep">
             <div class="n">01</div>
-            <div class="pbody">
+            <div class="pbody"><div class="pbody-in"><span class="pnum">01</span>
               <span class="pmeta">Día 1 · Presupuesto en 48h</span>
               <h3>Calcula y cuéntanos</h3>
               <p>Usas la calculadora y un especialista revisa tu caso. Recibes un presupuesto cerrado en 48h, sin sorpresas.</p>
               <ul class="ptags"><li>Calculadora</li><li>Revisión por abogado</li><li>Precio cerrado</li></ul>
-            </div>
+            </div></div><span class="pconn" aria-hidden="true"></span>
           </li>
           <li class="pstep">
             <div class="n">02</div>
-            <div class="pbody">
+            <div class="pbody"><div class="pbody-in"><span class="pnum">02</span>
               <span class="pmeta">Semanas 1–6 · Nos encargamos</span>
               <h3>Gestionamos todo</h3>
               <p>Preparamos la documentación legal y fiscal, optimizamos los impuestos y te mantenemos informado en cada avance.</p>
               <ul class="ptags"><li>Documentación</li><li>Impuesto de sucesiones</li><li>Plusvalía</li><li>Notaría</li></ul>
-            </div>
+            </div></div><span class="pconn" aria-hidden="true"></span>
           </li>
           <li class="pstep">
             <div class="n">03</div>
-            <div class="pbody">
+            <div class="pbody"><div class="pbody-in"><span class="pnum">03</span>
               <span class="pmeta">Cierre · Una sola firma</span>
               <h3>Cobras tu herencia</h3>
               <p>Firmas lo necesario y recibes lo que te corresponde, pagando el mínimo legal.</p>
               <ul class="ptags"><li>Adjudicación</li><li>Registro</li><li>Herencia cobrada</li></ul>
-            </div>
+            </div></div>
           </li>
         </ol>
         <div class="proc-visual">
@@ -1371,13 +1381,16 @@ html,body{margin:0;padding:0}
       tlLine.style.top=top+'px'; tlLine.style.height=len+'px';
       tlFill.style.height=(Math.min(1,Math.max(0,(mid-a.top-a.height/2)/len))*100)+'%';
       psteps.forEach(function(s){ var n=s.querySelector('.n').getBoundingClientRect(); s.classList.toggle('on', n.top+n.height/2<=mid); });
+      if(isMobileNav()){ var line=window.innerHeight*.78;
+        psteps.forEach(function(s){ var b=s.querySelector('.pbody'), r=b.getBoundingClientRect(); var p=Math.min(100,Math.max(0,(line-r.top)/r.height*100)); b.style.setProperty('--p',p.toFixed(1)); s.classList.toggle('done',p>=100);
+          var c=s.querySelector('.pconn'); if(c){ var cr=c.getBoundingClientRect(), cp=Math.min(100,Math.max(0,(line-cr.top)/cr.height*100)); c.style.setProperty('--c',cp.toFixed(1)); c.classList.toggle('done',cp>=100); } }); }
     }
     function onScroll(){
       nav.classList.toggle('scrolled', window.scrollY>12);
       timeline();
     }
     window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); onScroll();
-    if(reduce){ psteps.forEach(function(s){ s.classList.add('on'); }); tlFill.style.height='100%'; return; }
+    if(reduce){ psteps.forEach(function(s){ s.classList.add('on','done'); s.querySelector('.pbody').style.setProperty('--p',100); var c=s.querySelector('.pconn'); if(c){ c.classList.add('done'); c.style.setProperty('--c',100); } }); tlFill.style.height='100%'; return; }
 
     // Hero: palabras escalonadas
     var h1=$('.hero h1'), words=h1.textContent.trim().split(/\s+/);
