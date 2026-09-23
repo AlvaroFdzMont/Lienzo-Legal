@@ -1,0 +1,829 @@
+<!--
+  ===================================================================
+  LIENZO LEGAL · LANDING PADRE · ESTILO "LAWLI" (fiel)
+  -------------------------------------------------------------------
+  · Paleta real Lawli: gris claro/blanco + verde bosque #0D3022 +
+    salvia, texto #212B27. Tipos: Satoshi (títulos) + Inter (cuerpo)
+    + Archivo (logo). Botones rectángulo redondeado (no píldora).
+  · IMÁGENES: por ahora enlazadas a las del template Lawli
+    (framerusercontent.com). Para producción, súbelas a tu Mediateca
+    o pon tus propias fotos en /img y cambia el src. ←EDITAR
+  · Mantiene la calculadora (gancho) integrada en el estilo.
+  · Scopeado bajo #ll → no choca con el tema de WordPress.
+  · Para Elementor: pega <style>…</style> + <div id="ll">…</div> + <script>…</script>.
+  ===================================================================
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión de herencias · Lienzo Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=archivo@600&display=swap" rel="stylesheet">
+
+<style>
+#ll *{margin:0;padding:0;box-sizing:border-box}
+#ll{
+  /* Paleta REAL Lienzo Legal: taupe/bronce + verde petróleo + crema */
+  --green-d:#2D464A; --green:#3C5A5F; --brand:#937E5E; --brand-d:#826E50;
+  --sage:#93A1A0; --sage2:#C2CCC9;
+  --pale:#EDE7DA; --grey:#F1EEE6; --ink:#181818; --muted:#69727D;
+  --white:#FFFFFF; --gold:#937E5E; --line:#E3DED2; --line-d:rgba(255,255,255,.14);
+  --maxw:1280px;
+  font-family:'Inter',system-ui,-apple-system,sans-serif; color:var(--ink);
+  background:#F6F5ED; line-height:1.5; -webkit-font-smoothing:antialiased; font-size:16px;
+}
+#ll h1,#ll h2,#ll h3,#ll h4{font-family:'Satoshi','Inter',sans-serif; font-weight:500; color:var(--ink); letter-spacing:-.03em; line-height:1.08}
+#ll a{color:inherit; text-decoration:none}
+#ll img{max-width:100%; display:block}
+#ll p{color:var(--muted)}
+#ll .wrap{max-width:var(--maxw); margin:0 auto; padding:0 48px}
+
+/* Botones (rectángulo redondeado, estilo Lawli) */
+#ll .btn{display:inline-flex; align-items:center; gap:8px; font-family:'Inter'; font-weight:500; font-size:15px; padding:14px 22px; border-radius:12px; cursor:pointer; border:1px solid transparent; transition:.18s ease; white-space:nowrap}
+#ll .btn-dark{background:var(--brand); color:var(--white)}
+#ll .btn-dark:hover{background:var(--brand-d)}
+#ll .btn-pale{background:var(--pale); color:var(--ink)}
+#ll .btn-pale:hover{background:#dbe3de}
+#ll .btn-white{background:var(--white); color:var(--ink)}
+#ll .btn-white:hover{background:#f0f0ee}
+#ll .btn-sm{padding:10px 16px; font-size:14px; border-radius:10px}
+
+/* Header */
+#ll .nav{position:sticky; top:0; z-index:50; background:var(--white); border-bottom:1px solid var(--line)}
+#ll .nav .wrap{display:flex; align-items:center; justify-content:space-between; height:72px}
+#ll .logo{font-family:'Archivo',sans-serif; font-weight:600; font-size:21px; letter-spacing:.02em; text-transform:uppercase; color:var(--green-d); display:flex; align-items:baseline; gap:3px}
+#ll .logo sup{font-size:11px; color:var(--ink)}
+#ll .nav-links{display:flex; gap:28px; font-size:15px; color:var(--ink)}
+#ll .nav-links a{color:var(--green-d)} #ll .nav-links a:hover{opacity:.6}
+#ll .burger{display:none; font-size:24px; background:none; border:none; cursor:pointer; color:var(--ink)}
+
+/* HERO (texto izq + imagen der) */
+#ll .hero .wrap{display:grid; grid-template-columns:minmax(0,420px) 1fr; gap:64px; align-items:center; padding-top:80px; padding-bottom:80px; min-height:84vh}
+#ll .hero h1{font-size:clamp(40px,5.4vw,72px); letter-spacing:-.04em; line-height:1.02; margin-bottom:22px}
+#ll .hero .lead{font-size:18px; line-height:1.5; margin-bottom:30px; max-width:38ch}
+#ll .hero .lead b{color:var(--ink)}
+#ll .trustby{margin-top:46px}
+#ll .trustby .lab{font-size:14px; color:var(--muted); margin-bottom:14px}
+#ll .trustby .logos{display:flex; gap:26px; flex-wrap:wrap; align-items:center; font-family:'Satoshi'; font-weight:700; font-size:16px; color:var(--sage); opacity:.9}
+#ll .marquee{overflow:hidden; max-width:520px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent); mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+#ll .marquee-track{display:flex; gap:40px; width:max-content; animation:ll-marquee 22s linear infinite}
+#ll .marquee:hover .marquee-track{animation-play-state:paused}
+#ll .marquee-track span{font-family:'Satoshi'; font-weight:700; font-size:17px; color:var(--muted); white-space:nowrap; transition:color .3s}
+#ll .marquee-track span:hover{color:var(--brand)}
+@keyframes ll-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){#ll .marquee-track{animation:none; flex-wrap:wrap}}
+#ll .hero-media{border-radius:12px; overflow:hidden; height:78vh; max-height:680px}
+#ll .hero-media img{width:100%; height:100%; object-fit:cover}
+
+/* Secciones genéricas */
+#ll section{padding:96px 0}
+#ll .sec-h2{font-size:clamp(28px,3.6vw,46px); letter-spacing:-.03em; max-width:18ch}
+#ll .sec-lead{color:var(--muted); font-size:18px; margin-top:14px; max-width:52ch}
+
+/* Impact (verde oscuro, 3 features) */
+#ll .impact{background:var(--green-d); color:var(--white)}
+#ll .impact h2{color:var(--white); max-width:22ch; margin-bottom:64px}
+#ll .feats{display:grid; grid-template-columns:repeat(3,1fr); gap:48px}
+#ll .feat .ic{width:56px; height:56px; border-radius:6px; background:var(--green); display:grid; place-items:center; margin-bottom:20px}
+#ll .feat .ic svg{width:26px; height:26px; stroke:var(--white); fill:none; stroke-width:1.5}
+#ll .feat h4{color:var(--white); font-size:22px; margin-bottom:8px}
+#ll .feat p{color:var(--pale); font-size:15.5px; line-height:1.5}
+
+/* Proceso (gris claro) */
+#ll .proc{background:var(--grey)}
+#ll .proc-top{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:64px; flex-wrap:wrap}
+#ll .proc-grid{display:grid; grid-template-columns:1fr .8fr; gap:80px; align-items:center}
+#ll .pstep{display:grid; grid-template-columns:48px 1fr; gap:12px; padding:24px 0 28px; border-bottom:1px solid var(--line)}
+#ll .pstep:last-child{border-bottom:none}
+#ll .pstep .n{font-family:'Satoshi'; font-size:24px; color:var(--ink)}
+#ll .pstep h3{font-size:24px; margin-bottom:6px}
+#ll .pstep p{font-size:15.5px}
+#ll .proc-img{aspect-ratio:.82; border-radius:8px; overflow:hidden}
+#ll .proc-img img{width:100%; height:100%; object-fit:cover}
+
+/* Cita + stats (verde oscuro) */
+#ll .quote-sec{background:var(--green-d); color:var(--white)}
+#ll .quote-sec .head{margin-bottom:64px}
+#ll .quote-sec .head h2{color:var(--white)}
+#ll .quote-grid{display:grid; grid-template-columns:.55fr 1fr; gap:80px; align-items:stretch}
+#ll .quote-img{border-radius:8px; overflow:hidden; min-height:520px}
+#ll .quote-img img{width:100%; height:100%; object-fit:cover}
+#ll .quote-body{display:flex; flex-direction:column; justify-content:space-between}
+#ll .quote-body blockquote{font-family:'Satoshi'; font-weight:500; font-size:clamp(24px,2.7vw,34px); line-height:1.2; letter-spacing:-.03em; color:var(--white); margin-bottom:24px}
+#ll .quote-name{font-size:16px; color:var(--pale)} #ll .quote-name span{display:block; opacity:.6}
+#ll .qstats{display:flex; gap:48px; margin-top:40px}
+#ll .qstats .big{font-family:'Satoshi'; font-weight:500; font-size:clamp(40px,5vw,68px); letter-spacing:-.05em; color:var(--white); padding-top:24px; border-top:1px solid var(--line-d)}
+#ll .qstats .lbl{color:var(--pale); font-size:15px; margin-top:6px}
+
+/* Calculadora (pale) */
+#ll .calc-sec{background:var(--pale)}
+#ll .calc-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center}
+#ll .calc-grid h2{margin-bottom:14px}
+#ll .calc-grid .lead{color:var(--muted); font-size:17px; margin-bottom:22px}
+#ll .clist{display:flex; flex-direction:column; gap:11px; font-size:15px; color:var(--ink)}
+#ll .clist div{display:flex; gap:10px; align-items:flex-start}
+#ll .clist .ck{flex-shrink:0; width:20px; height:20px; border-radius:50%; background:var(--green); color:#fff; display:grid; place-items:center; font-size:11px; margin-top:1px}
+#ll .calc{background:var(--white); border:1px solid var(--line); border-radius:12px; overflow:hidden}
+#ll .calc-top{padding:16px 22px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line)}
+#ll .calc-top b{font-family:'Satoshi'; font-weight:500; font-size:15px}
+#ll .calc-step-lbl{font-size:13px; color:var(--muted)}
+#ll .progress{height:4px; background:var(--pale)}
+#ll .progress span{display:block; height:100%; background:var(--green); width:33%; transition:width .35s}
+#ll .calc-body{padding:24px}
+#ll .calc-q{font-family:'Satoshi'; font-weight:500; font-size:19px; margin-bottom:4px}
+#ll .calc-help{font-size:13px; color:var(--muted); margin-bottom:16px}
+#ll .opts{display:grid; gap:10px}
+#ll .opt{border:1px solid var(--line); border-radius:10px; padding:14px 16px; cursor:pointer; display:flex; align-items:center; gap:11px; font-weight:500; color:var(--ink); transition:.16s; background:var(--white); font-size:15px; text-align:left}
+#ll .opt:hover{border-color:var(--green); background:var(--grey)}
+#ll select.opt{appearance:none;-webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%232D464A' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center}
+#ll .slider-val{font-family:'Satoshi'; font-weight:500; font-size:30px; text-align:center; margin-bottom:6px}
+#ll input[type=range]{width:100%; accent-color:var(--green-d); height:4px}
+#ll .range-ends{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-top:6px}
+#ll .calc-actions{margin-top:18px}
+#ll .calc-actions .btn{width:100%; justify-content:center}
+#ll .calc-back{background:none; border:none; color:var(--muted); cursor:pointer; font-size:13px; padding:8px 0 0; display:block; margin:0 auto}
+#ll .friction{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; padding:12px; background:var(--grey); border-top:1px solid var(--line); font-size:12px; color:var(--muted)}
+#ll .result{text-align:center}
+#ll .result .badge{display:inline-block; background:rgba(27,80,58,.1); color:var(--green); font-weight:500; font-size:12px; padding:5px 12px; border-radius:100px; margin-bottom:12px}
+#ll .result .figure{font-family:'Satoshi'; font-weight:500; font-size:34px; letter-spacing:-.03em; color:var(--green-d); line-height:1.1}
+#ll .result .figure small{display:block; font-family:'Inter'; font-size:13px; color:var(--muted); font-weight:400; margin-top:5px}
+#ll .result .note{font-size:13px; color:var(--muted); margin:14px 0 16px; background:var(--grey); padding:12px; border-radius:10px}
+#ll .lockbox .field{margin-bottom:10px}
+#ll .lockbox input{width:100%; padding:13px 15px; border:1px solid var(--line); border-radius:10px; font-size:15px; font-family:'Inter'; background:var(--grey)}
+#ll .lockbox input:focus{outline:none; border-color:var(--green); background:#fff}
+#ll .lockbox input.valid{border-color:var(--green); background:#fff}
+#ll .disclaimer{font-size:11px; color:var(--muted); margin-top:6px}
+#ll .thanks{text-align:center; padding:6px 4px}
+#ll .thanks .ic{width:56px; height:56px; border-radius:50%; background:rgba(27,80,58,.12); color:var(--green); display:grid; place-items:center; font-size:28px; margin:0 auto 12px}
+#ll .thanks h3{font-size:22px; margin-bottom:8px}
+#ll .thanks p{font-size:15px; margin-bottom:6px}
+
+/* Servicios */
+#ll .serv-head{text-align:center; margin-bottom:56px}
+#ll .serv-head h2{margin:0 auto}
+#ll .serv-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+#ll .serv{display:flex; align-items:center; gap:18px; border:1px solid var(--line); border-radius:8px; padding:22px 24px; background:var(--white); transition:.16s}
+#ll .serv:hover{background:var(--white)}
+#ll .serv .ic{flex-shrink:0; width:52px; height:52px; border-radius:8px; background:var(--pale); display:grid; place-items:center}
+#ll .serv .ic svg{width:24px; height:24px; stroke:var(--green-d); fill:none; stroke-width:1.5}
+#ll .serv h4{font-size:18px; margin-bottom:3px}
+#ll .serv p{font-size:14px}
+#ll .serv .arr{margin-left:auto; color:var(--sage); font-size:18px}
+#ll .serv-cta{grid-column:1 / -1; background:var(--green-d); color:#fff; border-radius:8px; padding:32px 36px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; margin-top:8px}
+#ll .serv-cta h4{color:#fff; font-size:22px; margin-bottom:4px}
+#ll .serv-cta p{color:var(--pale); font-size:15px}
+
+/* Cards imagen */
+#ll .cards{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+#ll .card{position:relative; border-radius:8px; overflow:hidden; aspect-ratio:1.33; display:flex; align-items:flex-end; padding:28px}
+#ll .card img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+#ll .card .ov{position:absolute; inset:0; background:linear-gradient(180deg,rgba(45,70,74,0) 35%,rgba(45,70,74,.6) 100%)}
+#ll .card h3{position:relative; color:#fff; font-size:28px}
+
+/* FAQ */
+#ll .faq-grid{display:grid; grid-template-columns:.8fr 1.2fr; gap:64px; align-items:start}
+#ll .faq-side{position:sticky; top:96px; background:var(--pale); border-radius:8px; padding:32px}
+#ll .faq-side h3{font-size:24px; margin-bottom:8px}
+#ll .faq-side p{font-size:15px; margin-bottom:20px}
+#ll .qa{border-bottom:1px solid var(--line)}
+#ll .qa summary{cursor:pointer; list-style:none; padding:24px 0; font-family:'Satoshi'; font-weight:500; font-size:18px; color:var(--ink); display:flex; justify-content:space-between; gap:16px; align-items:center}
+#ll .qa summary::-webkit-details-marker{display:none}
+#ll .qa summary::after{content:"+"; font-size:22px; color:var(--green); transition:.2s}
+#ll .qa[open] summary::after{transform:rotate(45deg)}
+#ll .qa .a{padding:0 0 24px; color:var(--muted); font-size:15.5px; max-width:62ch}
+
+/* CTA final con imagen */
+#ll .finalcta{position:relative; min-height:560px; display:flex; align-items:center; justify-content:center; text-align:center; overflow:hidden}
+#ll .finalcta img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+#ll .finalcta .ov{position:absolute; inset:0; background:linear-gradient(180deg,rgba(45,70,74,.55),rgba(20,33,35,.65))}
+#ll .finalcta .inner{position:relative; color:#fff; padding:0 24px; text-shadow:0 2px 20px rgba(20,33,35,.35)}
+#ll .finalcta h2{color:#fff; font-size:clamp(32px,4.5vw,60px); letter-spacing:-.04em; margin-bottom:28px; max-width:16ch}
+
+/* Footer */
+#ll .foot{background:var(--white); padding-top:0}
+#ll .foot-inner{background:var(--green-d); color:var(--pale); border-radius:0; padding:80px 0 40px}
+#ll .foot-cta{display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; padding-bottom:60px; border-bottom:1px solid var(--line-d)}
+#ll .foot-cta h2{color:#fff; font-size:clamp(30px,4vw,52px); letter-spacing:-.04em}
+#ll .foot-mid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:32px; padding:56px 0}
+#ll .foot-logo{font-family:'Archivo'; font-weight:600; font-size:38px; text-transform:uppercase; color:#fff; letter-spacing:.02em}
+#ll .foot-logo sup{font-size:16px}
+#ll .foot-contact{margin-top:18px; font-size:15px; color:var(--pale); line-height:2}
+#ll .foot h5{color:rgba(255,255,255,.5); font-size:14px; margin-bottom:16px; font-weight:500}
+#ll .foot ul{list-style:none; display:flex; flex-direction:column; gap:11px; font-size:15px}
+#ll .foot ul a:hover{color:#fff}
+#ll .foot-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding-top:24px; border-top:1px solid var(--line-d); font-size:14px; color:var(--pale)}
+
+/* ===== CONVERSIÓN ===== */
+#ll .hero-trust{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:20px; font-size:14px; color:var(--muted)}
+#ll .hero-trust .stars{color:var(--gold); letter-spacing:1px; font-size:15px}
+#ll .hero-trust b{color:var(--ink)}
+#ll .hero-trust .sep{width:1px; height:15px; background:var(--line)}
+
+/* Garantías (reversión de riesgo) */
+#ll .guarantees{background:var(--grey); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+#ll .guarantees .wrap{display:grid; grid-template-columns:repeat(3,1fr); gap:32px; padding-top:40px; padding-bottom:40px}
+#ll .guar{display:flex; gap:14px; align-items:flex-start}
+#ll .guar .ic{flex-shrink:0; width:40px; height:40px; border-radius:8px; background:var(--green-d); display:grid; place-items:center}
+#ll .guar .ic svg{width:20px; height:20px; stroke:#fff; fill:none; stroke-width:1.6}
+#ll .guar h4{font-size:16px; margin-bottom:2px}
+#ll .guar p{font-size:13.5px}
+
+/* Prueba social */
+#ll .proof-head{text-align:center; margin-bottom:48px}
+#ll .reviews{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:16px}
+#ll .review{border:1px solid var(--line); border-radius:8px; padding:24px; background:var(--white)}
+#ll .review .stars{color:var(--gold); font-size:14px; letter-spacing:1px}
+#ll .review p{font-size:15px; color:var(--ink); margin:12px 0 16px; line-height:1.5}
+#ll .review .who{display:flex; align-items:center; gap:10px}
+#ll .review .av{width:38px; height:38px; border-radius:50%; background:var(--green-d); color:#fff; display:grid; place-items:center; font-family:'Satoshi'; font-weight:500}
+#ll .review .who b{font-size:14px; display:block; color:var(--ink)}
+#ll .review .who span{font-size:12px; color:var(--muted)}
+#ll .review .g{margin-left:auto; font-size:11px; color:var(--muted)}
+#ll .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+#ll .case{background:var(--green-d); color:#fff; border-radius:8px; padding:24px}
+#ll .case .big{font-family:'Satoshi'; font-weight:500; font-size:30px; letter-spacing:-.03em; color:#fff}
+#ll .case p{color:var(--pale); font-size:13.5px; margin-top:4px}
+
+/* Urgencia */
+#ll .urgency-band{background:var(--pale)}
+#ll .urgency-band .wrap{display:flex; justify-content:space-between; align-items:center; gap:28px; flex-wrap:wrap}
+#ll .urgency-band .tag{display:inline-block; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--green); background:rgba(27,80,58,.1); padding:5px 12px; border-radius:100px; margin-bottom:14px}
+#ll .urgency-band h2{max-width:22ch}
+#ll .urgency-band p{margin-top:10px; max-width:50ch; font-size:16px}
+
+/* Sellos footer */
+#ll .foot-seals{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+#ll .foot-seals span{border:1px solid var(--line-d); border-radius:8px; padding:7px 12px; font-size:12px; color:var(--pale)}
+
+/* Vídeo autoridad */
+#ll .video-sec .wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center}
+#ll .vtext .sec-h2{margin-bottom:14px}
+#ll .video-points{display:flex; flex-direction:column; gap:12px; margin:20px 0 26px}
+#ll .video-points div{display:flex; gap:10px; align-items:flex-start; font-size:15px; color:var(--ink)}
+#ll .video-points .ck{flex-shrink:0; width:20px; height:20px; border-radius:50%; background:var(--green-d); color:#fff; display:grid; place-items:center; font-size:11px; margin-top:1px}
+#ll .video-frame{position:relative; border-radius:12px; overflow:hidden; aspect-ratio:16/9; background:var(--green-d); cursor:pointer; box-shadow:0 30px 60px -34px rgba(45,70,74,.5)}
+#ll .video-frame iframe{position:absolute; inset:0; width:100%; height:100%; border:0; display:block}
+#ll .video-frame .video-poster{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .9s cubic-bezier(.16,1,.3,1)}
+#ll .video-frame:hover .video-poster{transform:scale(1.05)}
+#ll .video-frame .vov{position:absolute; inset:0; background:rgba(45,70,74,.38); transition:background .3s}
+#ll .video-frame:hover .vov{background:rgba(45,70,74,.24)}
+#ll .video-play{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:74px; height:74px; border-radius:50%; border:none; cursor:pointer; background:rgba(255,255,255,.94); display:grid; place-items:center; transition:transform .25s; box-shadow:0 12px 30px -8px rgba(0,0,0,.4)}
+#ll .video-frame:hover .video-play{transform:translate(-50%,-50%) scale(1.08)}
+#ll .video-play svg{width:26px; height:26px; fill:var(--green-d); margin-left:3px}
+#ll .video-play::after{content:""; position:absolute; inset:-10px; border-radius:50%; border:2px solid rgba(255,255,255,.55); animation:ll-pulse 2.2s ease-out infinite}
+@keyframes ll-pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+
+/* Speed-to-lead */
+#ll .wa-float{position:fixed; right:20px; bottom:20px; z-index:60; width:54px; height:54px; border-radius:15px; background:#25D366; display:grid; place-items:center; box-shadow:0 14px 32px -10px rgba(37,211,102,.7); transition:transform .2s}
+#ll .wa-float:hover{transform:translateY(-3px)}
+#ll .wa-float svg{width:28px; height:28px; fill:#fff}
+#ll .mobile-call{display:none}
+
+/* ===== ANIMACIONES MODERNAS ===== */
+@media (prefers-reduced-motion: no-preference){
+  #ll.js .reveal{opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); will-change:opacity,transform}
+  #ll.js .reveal.in{opacity:1; transform:none}
+  #ll.js .reveal.rev-l{transform:translateX(-36px)} #ll.js .reveal.rev-l.in{transform:none}
+  #ll.js .reveal.rev-r{transform:translateX(36px)} #ll.js .reveal.rev-r.in{transform:none}
+  #ll.js .reveal.rev-s{transform:scale(.94)} #ll.js .reveal.rev-s.in{transform:none}
+}
+#ll .btn{transition:.18s ease, transform .22s cubic-bezier(.16,1,.3,1)}
+#ll .btn-dark:hover,#ll .btn-pale:hover,#ll .btn-white:hover{transform:translateY(-3px)}
+#ll .hero-media,#ll .proc-img,#ll .quote-img,#ll .card{overflow:hidden}
+#ll .hero-media img,#ll .proc-img img,#ll .quote-img img,#ll .card img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+#ll .hero-media:hover img,#ll .proc-img:hover img,#ll .quote-img:hover img,#ll .card:hover img{transform:scale(1.06)}
+#ll .serv{transition:background .18s ease, transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease}
+#ll .serv:hover{transform:translateY(-4px); box-shadow:0 18px 40px -28px rgba(45,70,74,.5)}
+#ll .serv .arr{transition:transform .3s cubic-bezier(.16,1,.3,1)}
+#ll .serv:hover .arr{transform:translateX(6px)}
+#ll .feat .ic{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+#ll .feat:hover .ic{transform:translateY(-5px) rotate(-5deg)}
+#ll .card h3{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+#ll .card:hover h3{transform:translateY(-5px)}
+#ll .nav{transition:box-shadow .35s ease}
+#ll .nav.scrolled{box-shadow:0 8px 30px -20px rgba(0,0,0,.45)}
+#ll .qa summary{transition:color .2s} #ll .qa summary:hover{color:var(--green)}
+#ll .trustby .logos span{transition:opacity .3s, transform .3s} #ll .trustby .logos span:hover{opacity:1; transform:translateY(-2px)}
+@keyframes ll-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+#ll .result .badge{animation:ll-pop .5s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes ll-pop{0%{opacity:0;transform:scale(.7)}100%{opacity:1;transform:none}}
+#ll .thanks .ic{animation:ll-pop .6s cubic-bezier(.34,1.56,.64,1) both}
+
+@media(max-width:1000px){
+  #ll .wrap{padding:0 28px}
+  #ll .hero .wrap{grid-template-columns:1fr; gap:40px; min-height:0; padding-top:56px}
+  #ll .hero-media{height:54vh}
+  #ll .feats{grid-template-columns:1fr; gap:32px}
+  #ll .proc-grid,#ll .quote-grid,#ll .calc-grid,#ll .faq-grid{grid-template-columns:1fr; gap:40px}
+  #ll .quote-img{min-height:340px}
+  #ll .faq-side{position:static}
+  #ll .serv-grid,#ll .cards{grid-template-columns:1fr}
+  #ll .foot-mid{grid-template-columns:1fr 1fr}
+  #ll .nav-links{display:none} #ll .burger{display:block}
+  #ll .guarantees .wrap{grid-template-columns:1fr; gap:22px}
+  #ll .reviews,#ll .cases{grid-template-columns:1fr}
+  #ll .video-sec .wrap{grid-template-columns:1fr; gap:32px}
+  #ll .wa-float{bottom:80px}
+  #ll .mobile-call{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--green-d); padding:10px 14px; gap:10px}
+  #ll .mobile-call .btn{flex:1; justify-content:center; padding:13px}
+}
+@media(max-width:560px){
+  #ll section{padding:64px 0}
+  #ll .qstats{gap:28px} #ll .foot-mid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- =================== INICIO BLOQUE ELEMENTOR =================== -->
+<div id="ll">
+
+  <!-- HEADER -->
+  <header class="nav">
+    <div class="wrap">
+      <a href="#" class="logo">lienzo legal <sup>®</sup></a> <!-- ←EDITAR -->
+      <nav class="nav-links">
+        <a href="#cambia">Qué cambia</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#faq">Preguntas</a>
+      </nav>
+      <a href="#calc" class="btn btn-pale btn-sm">Calcular gratis</a>
+      <button class="burger" aria-label="Menú">☰</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Tu herencia, resuelta sin papeleos</h1>
+        <p class="lead">Gestión de herencias 100% online y con <b>precio cerrado</b>. Nos encargamos de todo el proceso legal y fiscal por ti.</p>
+        <a href="#calc" class="btn btn-dark">Calcular lo que me corresponde</a>
+        <div class="hero-trust">
+          <span class="stars">★★★★★</span> <b>4,9</b> en Google
+          <span class="sep"></span> <b>+500</b> herencias gestionadas
+          <span class="sep"></span> 100% confidencial
+        </div>
+        <div class="trustby">
+          <div class="lab">Reconocidos en</div>
+          <!-- ←EDITAR logos. Se duplican para el bucle infinito; mantén las dos copias iguales -->
+          <div class="marquee"><div class="marquee-track">
+            <span>Expansión</span><span>elEconomista</span><span>Idealista</span><span>La Razón</span><span>Cinco Días</span>
+            <span>Expansión</span><span>elEconomista</span><span>Idealista</span><span>La Razón</span><span>Cinco Días</span>
+          </div></div>
+        </div>
+      </div>
+      <!-- ←EDITAR src: imagen del template Lawli. Cambia por tu foto o súbela a la Mediateca. -->
+      <div class="hero-media"><img src="https://framerusercontent.com/images/5nBtODBwYPkPyAq5y191XZ7b8.png?width=2816&amp;height=1536" alt="Gestión de herencias"></div>
+    </div>
+  </section>
+
+  <!-- QUÉ CAMBIA (impact) -->
+  <section id="cambia" class="impact">
+    <div class="wrap">
+      <h2 class="sec-h2">Qué cambia cuando nos encargamos nosotros</h2>
+      <div class="feats">
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h4>Cero papeleo</h4>
+          <p>Gestionamos toda la documentación legal y fiscal. Tú solo firmas lo imprescindible.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h4>Pagas lo mínimo legal</h4>
+          <p>Aplicamos todas las bonificaciones de tu comunidad. Nuestros clientes han ahorrado +2,1 M€.</p>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h4>Sin sorpresas</h4>
+          <p>Precio cerrado desde el primer día. Sin letra pequeña ni costes ocultos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso" class="proc">
+    <div class="wrap">
+      <div class="proc-top">
+        <h2 class="sec-h2">Cómo trabajamos</h2>
+        <a href="#calc" class="btn btn-dark">Calcular gratis</a>
+      </div>
+      <div class="proc-grid">
+        <div class="psteps">
+          <div class="pstep"><div class="n">1.</div><div><h3>Calcula y cuéntanos</h3><p>Usas la calculadora y un especialista revisa tu caso. Presupuesto cerrado en 48h, sin sorpresas.</p></div></div>
+          <div class="pstep"><div class="n">2.</div><div><h3>Gestionamos todo</h3><p>Preparamos la documentación legal y fiscal, optimizamos los impuestos y te mantenemos informado.</p></div></div>
+          <div class="pstep"><div class="n">3.</div><div><h3>Cobras tu herencia</h3><p>Firmas lo necesario y recibes lo que te corresponde, pagando el mínimo legal.</p></div></div>
+        </div>
+        <!-- ←EDITAR src -->
+        <div class="proc-img"><img src="https://framerusercontent.com/images/Mud170avDSkPA3GxsRwZHYIlU.png?width=2400&amp;height=2400" alt="Proceso de gestión de herencia"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITA + STATS -->
+  <section class="quote-sec">
+    <div class="wrap">
+      <div class="head"><h2 class="sec-h2">Una palabra de nuestro equipo</h2></div>
+      <div class="quote-grid">
+        <!-- ←EDITAR src: foto real del equipo -->
+        <div class="quote-img"><img src="https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=2816&amp;height=1536" alt="Equipo de Lienzo Legal"></div>
+        <div class="quote-body">
+          <div>
+            <blockquote>“Gestionar una herencia no va solo de leyes. Va de acompañar a una familia para que decida tranquila, sin sustos y pagando lo justo.”</blockquote>
+            <div class="quote-name">Mikel Aramburu<span>Responsable de Lienzo Legal</span></div> <!-- ←EDITAR -->
+          </div>
+          <div class="qstats">
+            <div><div class="big">+500</div><div class="lbl">herencias gestionadas</div></div>
+            <div><div class="big">2,1 M€</div><div class="lbl">ahorrados en impuestos</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VÍDEO AUTORIDAD -->
+  <section class="video-sec">
+    <div class="wrap">
+      <div class="vtext">
+        <span class="tag" style="display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:rgba(45,70,74,.09);padding:5px 12px;border-radius:100px;margin-bottom:14px">Sobre nosotros</span>
+        <h2 class="sec-h2">Conoce Lienzo Legal en 1 minuto</h2>
+        <p class="sec-lead">Te contamos quiénes somos y cómo gestionamos tu herencia de principio a fin, sin tecnicismos.</p>
+        <div class="video-points">
+          <div><span class="ck">✓</span> Quiénes somos y por qué nacimos</div>
+          <div><span class="ck">✓</span> Cómo trabajamos, paso a paso</div>
+          <div><span class="ck">✓</span> Qué consigues: tranquilidad y ahorro</div>
+        </div>
+        <a href="#calc" class="btn btn-dark">Calcular lo que me corresponde</a>
+      </div>
+      <!-- ←EDITAR data-yt: pon el ID de tu vídeo de YouTube (lo que va tras v=) y cambia la imagen de portada -->
+      <div class="video-frame" id="vidframe" data-yt="VIDEO_ID">
+        <img class="video-poster" src="https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=2816&amp;height=1536" alt="Conoce Lienzo Legal">
+        <div class="vov"></div>
+        <button class="video-play" aria-label="Reproducir vídeo"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTÍAS (reversión de riesgo) -->
+  <section class="guarantees" style="padding:0">
+    <div class="wrap">
+      <div class="guar">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 8 9 8 9s8-4 8-9V5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h4>Primera consulta gratis</h4><p>Analizamos tu caso sin coste y te decimos qué podemos hacer.</p></div>
+      </div>
+      <div class="guar">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div><h4>Precio cerrado</h4><p>Sabes lo que pagas desde el primer día. Sin letra pequeña.</p></div>
+      </div>
+      <div class="guar">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <div><h4>100% confidencial</h4><p>Tus datos no se comparten con nadie. Trato discreto.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section id="calc" class="calc-sec">
+    <div class="wrap">
+      <div class="calc-grid">
+        <div>
+          <h2 class="sec-h2">Calcula lo que te corresponde</h2>
+          <p class="lead">Una estimación clara en menos de 1 minuto. Y te decimos cuánto puedes ahorrar en impuestos.</p>
+          <div class="clist">
+            <div><span class="ck">✓</span> No pedimos datos personales para calcular</div>
+            <div><span class="ck">✓</span> Resultado al instante, sin esperas</div>
+            <div><span class="ck">✓</span> 100% confidencial · sin compromiso</div>
+          </div>
+        </div>
+
+        <div class="calc">
+          <div class="calc-top"><b>Calculadora de herencia</b><span class="calc-step-lbl" id="stepLbl">Paso 1 de 3</span></div>
+          <div class="progress"><span id="bar" style="width:33%"></span></div>
+          <div class="calc-body">
+            <div class="cstep" data-step="1">
+              <div class="calc-q">¿Qué incluye la herencia?</div>
+              <div class="calc-help">Empieza por lo fácil. No te pedimos datos personales.</div>
+              <div class="opts">
+                <button class="opt" data-next data-k="tipo" data-v="vivienda">Una vivienda u otro inmueble</button>
+                <button class="opt" data-next data-k="tipo" data-v="dinero">Dinero, cuentas o inversiones</button>
+                <button class="opt" data-next data-k="tipo" data-v="ambos">Inmuebles y dinero</button>
+                <button class="opt" data-next data-k="tipo" data-v="nose">Aún no lo sé con certeza</button>
+              </div>
+            </div>
+            <div class="cstep" data-step="2" hidden>
+              <div class="calc-q">Valor aproximado de la herencia</div>
+              <div class="calc-help">Una estimación basta. Lo ajustamos contigo después.</div>
+              <div class="slider-val" id="sliderVal">200.000 €</div>
+              <input type="range" id="valRange" min="20000" max="800000" step="10000" value="200000">
+              <div class="range-ends"><span>20.000 €</span><span>800.000 €+</span></div>
+              <div class="calc-actions"><button class="btn btn-dark" data-next data-k="valor">Continuar</button></div>
+              <button class="calc-back" data-back>← Atrás</button>
+            </div>
+            <div class="cstep" data-step="3" hidden>
+              <div class="calc-q">¿Cuál es tu parentesco?</div>
+              <div class="calc-help">Determina las reducciones fiscales que te corresponden.</div>
+              <div class="opts">
+                <select class="opt" id="parentesco">
+                  <option value="">Tu parentesco con el fallecido…</option>
+                  <option value="g2">Hijo/a o cónyuge</option>
+                  <option value="g2">Padre / madre</option>
+                  <option value="g1">Nieto/a (menor de 21)</option>
+                  <option value="g3">Hermano/a, sobrino/a, tío/a</option>
+                  <option value="g4">Primo/a, amigo/a u otros</option>
+                </select>
+                <select class="opt" id="comunidad" style="margin-top:2px">
+                  <option value="">Comunidad del fallecido…</option>
+                  <option>Madrid</option><option>Cataluña</option><option>Andalucía</option>
+                  <option>C. Valenciana</option><option>País Vasco</option><option>Galicia</option><option>Otra</option>
+                </select>
+              </div>
+              <div class="calc-actions"><button class="btn btn-dark" id="calcGo">Ver lo que me corresponde</button></div>
+              <button class="calc-back" data-back>← Atrás</button>
+            </div>
+            <div class="cstep" data-step="4" hidden>
+              <div class="result">
+                <span class="badge">Estimación lista</span>
+                <div class="figure" id="figureNet">≈ 180.000 € – 195.000 €<small>lo que te corresponde tras impuestos (estimación)</small></div>
+                <div class="note" id="resultNote">Con nuestra optimización fiscal podrías reducir el impuesto estimado. Te decimos el ahorro exacto en tu informe gratuito.</div>
+                <div class="lockbox">
+                  <div style="font-weight:500;margin-bottom:10px;font-size:14.5px">Desbloquea tu informe gratuito</div>
+                  <div class="field"><input type="text" id="fName" placeholder="Tu nombre"></div>
+                  <div class="field"><input type="tel" id="fPhone" placeholder="Teléfono donde llamarte"></div>
+                  <button class="btn btn-dark" id="leadGo" style="width:100%;justify-content:center">Quiero mi informe gratis</button>
+                  <p class="disclaimer">Estimación orientativa no vinculante. 100% gratis y confidencial.</p>
+                </div>
+              </div>
+            </div>
+            <div class="cstep" data-step="5" hidden>
+              <div class="thanks">
+                <div class="ic">✓</div>
+                <h3 id="thanksTitle">¡Perfecto!</h3>
+                <p id="thanksText">Un especialista en herencias revisará tu caso y te llamará hoy antes de las 18:00h.</p>
+              </div>
+            </div>
+          </div>
+          <div class="friction" id="friction"><span>Menos de 1 min</span><span>·</span><span>Confidencial</span><span>·</span><span>Gratis</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="wrap">
+      <div class="serv-head"><h2 class="sec-h2" style="max-width:none">Cómo podemos ayudarte</h2></div>
+      <div class="serv-grid">
+        <!-- ←EDITAR enlaces a landings hijas -->
+        <a href="#" class="serv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div><h4>Aceptación de herencia</h4><p>Tramitamos la aceptación y adjudicación de bienes, de inicio a fin.</p></div><span class="arr">→</span></a>
+        <a href="#" class="serv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div><div><h4>Impuesto de sucesiones</h4><p>Calculamos y liquidamos aplicando todas las bonificaciones.</p></div><span class="arr">→</span></a>
+        <a href="#" class="serv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div><div><h4>Proindivisos</h4><p>¿Compartes una casa heredada? Vende tu parte sin pelear.</p></div><span class="arr">→</span></a>
+        <a href="#" class="serv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><h4>Plusvalía municipal</h4><p>La calculamos para que no pagues de más en la transmisión.</p></div><span class="arr">→</span></a>
+        <a href="#" class="serv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/><path d="M21 21l-5-5"/></svg></div><div><h4>Valoración de vivienda</h4><p>Tasamos el inmueble heredado con datos reales de mercado.</p></div><span class="arr">→</span></a>
+        <a href="#" class="serv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div><h4>Mediación entre herederos</h4><p>Si hay desacuerdos, negociamos la mejor solución para todos.</p></div><span class="arr">→</span></a>
+        <div class="serv-cta">
+          <div><h4>Habla con un especialista</h4><p>Primera consulta gratis y sin compromiso.</p></div>
+          <a href="#calc" class="btn btn-white">Calcular gratis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRUEBA SOCIAL -->
+  <section class="proof">
+    <div class="wrap">
+      <div class="proof-head"><h2 class="sec-h2" style="max-width:none">Familias que ya heredaron sin estrés</h2><p class="sec-lead" style="margin:14px auto 0">Más de 500 clientes confiaron su herencia a Lienzo Legal.</p></div>
+      <div class="reviews">
+        <div class="review"><div class="stars">★★★★★ <span class="g">Google</span></div><p>"Todo muy fácil y rápido. Se encargaron de todo y solo tuve que ir al notario a firmar."</p><div class="who"><div class="av">M</div><div><b>Mikel Aramburu</b><span>Barcelona</span></div></div></div>
+        <div class="review"><div class="stars">★★★★★ <span class="g">Google</span></div><p>"Gestionaron la herencia de mi familia explicándonos todo con claridad. Lo recomiendo."</p><div class="who"><div class="av">Y</div><div><b>Yolanda Cía</b><span>Galicia</span></div></div></div>
+        <div class="review"><div class="stars">★★★★★ <span class="g">Google</span></div><p>"Me explican todo de forma muy sencilla. Sin tecnicismos ni sustos."</p><div class="who"><div class="av">A</div><div><b>Agustín López</b><span>Madrid</span></div></div></div>
+      </div>
+      <div class="cases">
+        <div class="case"><div class="big">14.300 €</div><p>ahorrados en sucesiones a Marta G. (Madrid)</p></div>
+        <div class="case"><div class="big">3 semanas</div><p>para desbloquear una herencia entre 4 hermanos</p></div>
+        <div class="case"><div class="big">327</div><p>herencias gestionadas solo en 2026</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS IMAGEN -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cards">
+        <!-- ←EDITAR src -->
+        <a href="#calc" class="card"><img src="https://framerusercontent.com/images/tAxeWlqfhf7vnZa9GZ6vh1oYY3k.png?width=2400&amp;height=1680" alt="Contacto"><div class="ov"></div><h3>Habla con nosotros</h3></a>
+        <a href="#" class="card"><img src="https://framerusercontent.com/images/AVum7b2zQgoQDB3w0ALcIFg30zE.png?width=2816&amp;height=1536" alt="Sobre nosotros"><div class="ov"></div><h3>Conócenos</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- URGENCIA -->
+  <section class="urgency-band">
+    <div class="wrap">
+      <div>
+        <span class="tag">Plazo legal</span>
+        <h2 class="sec-h2">El impuesto de sucesiones tiene 6 meses</h2>
+        <p>Pasado el plazo llegan recargos e intereses que se pueden evitar. Cuanto antes empieces, más podemos ahorrarte.</p>
+      </div>
+      <a href="#calc" class="btn btn-dark">Calcular ahora</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="faq-grid">
+        <div class="faq-side">
+          <h3>Da el siguiente paso</h3>
+          <p>Resuelve tu herencia con quien te lo explica claro.</p>
+          <a href="#calc" class="btn btn-dark">Calcular gratis</a>
+        </div>
+        <div class="faqs">
+          <details class="qa" open><summary>¿Cuánto cuesta gestionar una herencia?</summary><div class="a">Trabajamos con precio cerrado desde 690€, según el número de herederos, los bienes y la comunidad autónoma. Sin letra pequeña: lo sabes antes de empezar.</div></details>
+          <details class="qa"><summary>¿Y si no llego a tiempo de pagar el impuesto?</summary><div class="a">Hay 6 meses prorrogables. Si vamos justos, gestionamos la prórroga y evitamos recargos. Por eso conviene empezar cuanto antes.</div></details>
+          <details class="qa"><summary>¿Puedo hacerlo todo sin desplazarme?</summary><div class="a">Sí, el proceso es 100% online. Solo necesitarás ir al notario para la firma final, y te acompañamos en todo momento.</div></details>
+          <details class="qa"><summary>¿De verdad me ayudáis a pagar menos impuestos?</summary><div class="a">Aplicamos todas las bonificaciones y reducciones de tu comunidad autónoma. Nuestros clientes han ahorrado más de 2,1 M€.</div></details>
+          <details class="qa"><summary>¿Mis datos están seguros?</summary><div class="a">Totalmente. Son 100% confidenciales y no se comparten con terceros. Trato discreto y profesional.</div></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="padding:0">
+    <div class="finalcta">
+      <!-- ←EDITAR src -->
+      <img src="https://framerusercontent.com/images/ajoeznXeqMwLBWnZYTlZhxnPGE.png?width=2000&amp;height=2000" alt="">
+      <div class="ov"></div>
+      <div class="inner">
+        <h2>Habla con quien te entiende</h2>
+        <a href="#calc" class="btn btn-white">Calcular lo que me corresponde</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="foot-inner">
+      <div class="wrap">
+        <div class="foot-cta">
+          <h2>¿List@ para empezar?</h2>
+          <a href="#calc" class="btn btn-pale">Calcular gratis</a>
+        </div>
+        <div class="foot-mid">
+          <div>
+            <div class="foot-logo">lienzo legal <sup>®</sup></div>
+            <div class="foot-contact">España · 100% online<br>contacto@lienzolegal.com<br>+34 000 000 000</div> <!-- ←EDITAR -->
+            <div class="foot-seals"><span>Abogados colegiados</span><span>RGPD</span><span>★ 4,9 Google</span></div> <!-- ←EDITAR sellos reales -->
+          </div>
+          <div><h5>Servicios</h5><ul><li><a href="#">Aceptación de herencia</a></li><li><a href="#">Impuesto de sucesiones</a></li><li><a href="#">Proindivisos</a></li><li><a href="#">Valorar vivienda</a></li></ul></div>
+          <div><h5>Empresa</h5><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Blog</a></li><li><a href="#">Contacto</a></li></ul></div>
+          <div><h5>Legal</h5><ul><li><a href="#">Política de Privacidad</a></li><li><a href="#">Aviso Legal</a></li><li><a href="#">Cookies</a></li></ul></div>
+        </div>
+        <div class="foot-bottom"><span>© 2026 Lienzo Legal</span><span>★ 4,9 en Google · +500 herencias gestionadas</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var root=document.getElementById('ll'); if(!root) return;
+    var data={};
+    var steps=root.querySelectorAll('.cstep');
+    var bar=root.querySelector('#bar'), lbl=root.querySelector('#stepLbl'), friction=root.querySelector('#friction');
+    function show(n){
+      steps.forEach(function(s){ s.hidden=(+s.dataset.step!==n); });
+      if(n<=3){ bar.style.width=(n/3*100)+'%'; lbl.textContent='Paso '+n+' de 3'; }
+      else { bar.style.width='100%'; lbl.textContent='Resultado'; }
+      friction.style.display=(n>=5)?'none':'flex';
+    }
+    function fmt(n){return n.toLocaleString('es-ES');}
+    var range=root.querySelector('#valRange'), sval=root.querySelector('#sliderVal');
+    if(range){ range.addEventListener('input',function(){ var v=+range.value; sval.textContent=(v>=800000?'800.000 €+':fmt(v)+' €'); data.valor=v; }); data.valor=+range.value; }
+    root.querySelectorAll('[data-next]').forEach(function(b){ b.addEventListener('click',function(){
+      if(b.dataset.k&&b.dataset.v) data[b.dataset.k]=b.dataset.v; show(+b.closest('.cstep').dataset.step+1); }); });
+    root.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click',function(){ show(+b.closest('.cstep').dataset.step-1); }); });
+    var rates={g1:0.02,g2:0.04,g3:0.13,g4:0.22};
+    var go=root.querySelector('#calcGo');
+    if(go) go.addEventListener('click',function(){
+      var par=root.querySelector('#parentesco').value, com=root.querySelector('#comunidad').value;
+      if(!par||!com){ alert('Selecciona parentesco y comunidad para continuar.'); return; }
+      var v=data.valor||200000, rate=rates[par]||0.1, tax=Math.round(v*rate);
+      var netLow=Math.round((v-tax)/1000)*1000, netHigh=Math.round((v-Math.round(tax*0.55))/1000)*1000;
+      root.querySelector('#figureNet').innerHTML='≈ '+fmt(netLow)+' € – '+fmt(netHigh)+' €<small>lo que te corresponde tras impuestos (estimación)</small>';
+      root.querySelector('#resultNote').textContent='Impuesto estimado: ~'+fmt(tax)+' €. Con nuestra optimización fiscal podrías reducirlo. Te calculamos el ahorro exacto en tu informe gratuito.';
+      pushEv('calc_resultado',{valor:v,parentesco:par,comunidad:com});
+      show(4);
+    });
+    root.querySelectorAll('.lockbox input').forEach(function(i){ i.addEventListener('input',function(){ i.classList.toggle('valid', i.value.trim().length>2); }); });
+    var lead=root.querySelector('#leadGo');
+    if(lead) lead.addEventListener('click',function(){
+      var name=(root.querySelector('#fName').value||'').trim(), phone=(root.querySelector('#fPhone').value||'').trim();
+      if(name.length<2||phone.length<6){ alert('Déjanos tu nombre y un teléfono para llamarte.'); return; }
+      /* TODO: integrar envío real (CRM/email). Clave: speed-to-lead < 5 min */
+      var h=new Date().getHours(), when=h<17?'hoy antes de las 18:00h':'mañana a primera hora';
+      root.querySelector('#thanksTitle').textContent='¡Perfecto, '+name+'!';
+      root.querySelector('#thanksText').textContent='Un especialista revisará tu caso y te llamará '+when+' al '+phone+'.';
+      pushEv('lead_calculadora');
+      show(5);
+    });
+    var burger=root.querySelector('.burger');
+    if(burger) burger.addEventListener('click',function(){ var t=root.querySelector('#calc'); if(t) t.scrollIntoView({behavior:'smooth'}); });
+    root.querySelectorAll('a[href^="#"]').forEach(function(a){ a.addEventListener('click',function(e){ var id=a.getAttribute('href');
+      if(id.length>1){var el=root.querySelector(id); if(el){e.preventDefault(); el.scrollIntoView({behavior:'smooth'});}} }); });
+
+    /* ===== Medición (GA4 / GTM) ===== */
+    function pushEv(name,extra){ try{ window.dataLayer=window.dataLayer||[]; window.dataLayer.push(Object.assign({event:name},extra||{})); }catch(e){} }
+    root.querySelectorAll('a[href="#calc"], a[href^="tel:"], a[href*="wa.me"]').forEach(function(a){
+      a.addEventListener('click',function(){
+        var n = a.href.indexOf('wa.me')>-1 ? 'click_whatsapp' : (a.href.indexOf('tel:')>-1 ? 'click_llamar' : 'click_calcular');
+        pushEv(n);
+      });
+    });
+
+    /* ===== Vídeo (carga al pulsar) ===== */
+    var vf=root.querySelector('#vidframe');
+    if(vf) vf.addEventListener('click',function(){
+      var id=vf.getAttribute('data-yt'); if(!id||id==='VIDEO_ID'){ alert('Añade el ID de tu vídeo de YouTube en data-yt.'); return; }
+      vf.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" title="Conoce Lienzo Legal" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+      pushEv('play_video');
+    });
+
+    /* ===== Animaciones modernas ===== */
+    root.classList.add('js');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce){
+      // grupos con dirección/escalonado
+      var groups=[
+        ['.hero h1',''], ['.hero .lead',''], ['.hero .trustby',''], ['.hero-media','rev-r'],
+        ['.impact h2',''], ['.feat','rev-s'],
+        ['.proc-top',''], ['.pstep',''], ['.proc-img','rev-r'],
+        ['.quote-sec .head',''], ['.quote-img','rev-l'], ['.quote-body',''],
+        ['.vtext',''], ['.video-frame','rev-r'],
+        ['.calc-grid > div',''],
+        ['.guar',''],
+        ['.serv-head',''], ['.serv','rev-s'], ['.serv-cta',''],
+        ['.proof-head',''], ['.review','rev-s'], ['.case','rev-s'],
+        ['.urgency-band .wrap > div',''],
+        ['.card','rev-s'],
+        ['.faq-side','rev-l'], ['.qa',''],
+        ['.finalcta .inner','rev-s'],
+        ['.foot-cta',''], ['.foot-mid > div','']
+      ];
+      groups.forEach(function(g){
+        root.querySelectorAll(g[0]).forEach(function(el,i){
+          el.classList.add('reveal'); if(g[1]) el.classList.add(g[1]);
+          el.style.transitionDelay=Math.min(i*80,360)+'ms';
+        });
+      });
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ var t=e.target; t.classList.add('in');
+          setTimeout(function(){ t.style.transitionDelay=''; },1000); io.unobserve(t); } });
+      },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+      root.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+      // contadores
+      function countUp(el){
+        var m=el.textContent.trim().match(/^([+~]?)(\d[\d.]*)$/); if(!m) return;
+        var pre=m[1], target=parseInt(m[2].replace(/\./g,''),10); if(isNaN(target)) return;
+        var dur=1200, t0=null;
+        function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1);
+          var v=Math.round(target*(1-Math.pow(1-p,3)));
+          el.textContent=pre+v.toLocaleString('es-ES'); if(p<1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      }
+      var ioN=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); ioN.unobserve(e.target); } });
+      },{threshold:.6});
+      root.querySelectorAll('.qstats .big').forEach(function(el){ ioN.observe(el); });
+
+      // header sombra + parallax CTA final
+      var nav=root.querySelector('.nav'), fc=root.querySelector('.finalcta img');
+      function onScroll(){
+        if(nav) nav.classList.toggle('scrolled', window.scrollY>12);
+        if(fc){ var r=fc.parentElement.getBoundingClientRect();
+          var off=(r.top + r.height/2 - window.innerHeight/2)*-0.06;
+          fc.style.transform='translateY('+off+'px) scale(1.12)'; }
+      }
+      window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+    }
+  })();
+  </script>
+
+  <!-- Speed-to-lead -->
+  <a href="https://wa.me/34000000000" class="wa-float" aria-label="WhatsApp" data-ev="whatsapp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01c-1.52 0-3.01-.41-4.3-1.18l-.31-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg></a>
+  <div class="mobile-call">
+    <a href="tel:+34000000000" class="btn btn-white" data-ev="llamar">Llamar</a>
+    <a href="#calc" class="btn btn-dark">Calcular gratis</a>
+  </div>
+
+</div>
+<!-- =================== FIN BLOQUE ELEMENTOR =================== -->
+
+</body>
+</html>
