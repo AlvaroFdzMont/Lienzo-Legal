@@ -106,7 +106,9 @@
 #ll .marquee-track span{font-family:'Satoshi'; font-weight:700; font-size:17px; color:var(--muted); white-space:nowrap; transition:color .3s}
 #ll .marquee-track span:hover{color:var(--brand)}
 @keyframes ll-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-#ll .hero-media{border-radius:12px; overflow:hidden; height:78vh; max-height:680px}
+#ll .hero-tag{margin-bottom:18px}
+#ll .hero-media{position:relative; border-radius:12px; overflow:hidden; height:78vh; max-height:680px}
+#ll .hero-badge{display:none}
 #ll .hero-media img{width:100%; height:100%; object-fit:cover}
 
 /* Qué cambia */
@@ -384,11 +386,19 @@
   #ll .nav-links a::after{display:none}
   #ll .nav .btn{display:none}
   #ll .burger{display:block}
-  #ll .hero .wrap{grid-template-columns:1fr; gap:40px; min-height:0; padding-top:56px}
-  #ll .hero-media{height:54vh}
-  #ll .hero-trust{gap:8px 12px}
-  #ll .hero-trust .sep{display:none}
-  #ll .hero .btn{width:100%; justify-content:center}
+  #ll .hero .wrap{grid-template-columns:1fr; gap:0; min-height:0; padding-top:36px; padding-bottom:56px}
+  #ll .hero .wrap > div:first-child{display:contents}
+  #ll .hero .wrap > div:first-child > *{min-width:0; max-width:100%}
+  #ll .hero-tag{order:1; margin-bottom:16px; justify-self:start}
+  #ll .hero h1{order:2; font-size:clamp(38px,11vw,48px); margin-bottom:14px}
+  #ll .hero .lead{order:3; font-size:16.5px; margin-bottom:22px; max-width:none}
+  #ll .hero-media{order:4; height:auto; aspect-ratio:4/3; max-height:none; margin-bottom:20px}
+  #ll .hero-badge{display:inline-flex; align-items:center; gap:6px; position:absolute; left:12px; bottom:12px; background:rgba(255,255,255,.94); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border-radius:10px; padding:9px 12px; font-size:12.5px; white-space:nowrap; color:var(--muted); box-shadow:0 12px 30px -14px rgba(20,33,35,.5)}
+  #ll .hero-badge b{color:var(--ink)} #ll .hero-badge .stars{color:var(--gold); letter-spacing:1px} #ll .hero-badge i{width:1px; height:12px; background:var(--line); margin:0 4px}
+  #ll .hero .btn{order:5; width:100%; justify-content:center; padding:16px 22px; font-size:16px}
+  #ll .hero-trust{order:6; display:none}
+  #ll .trustby{order:7; margin-top:28px}
+  #ll .trustby .lab{margin-bottom:10px}
   #ll .feats{grid-template-columns:1fr; gap:32px}
   #ll .proc-grid,#ll .quote-grid,#ll .calc-grid,#ll .faq-grid{grid-template-columns:1fr; gap:40px}
   #ll .proc-grid{gap:56px}
@@ -402,7 +412,8 @@
   #ll .proc-img{aspect-ratio:1}
   #ll .pstep.on .pbody{transform:none}
   #ll .quote-img{min-height:340px}
-  #ll .faq-side{position:static}
+  #ll .faq-side{position:static; text-align:center}
+  #ll .faq-side .btn{width:100%; justify-content:center}
   #ll .serv-grid,#ll .cards{grid-template-columns:minmax(0,1fr)}
   #ll .serv{padding:18px; gap:14px}
   #ll .serv .ic{width:44px; height:44px}
@@ -458,6 +469,7 @@
   <section class="hero">
     <div class="wrap">
       <div>
+        <span class="tag hero-tag">Herencias · 100% online</span>
         <h1>Tu herencia, resuelta sin papeleos</h1>
         <p class="lead">Gestión de herencias 100% online y con <b>precio cerrado</b>. Nos encargamos de todo el proceso legal y fiscal por ti.</p>
         <a href="#calc" class="btn btn-dark">Calcular lo que me corresponde</a>
@@ -476,7 +488,10 @@
         </div>
       </div>
       <!-- ←EDITAR src -->
-      <div class="hero-media"><img src="https://framerusercontent.com/images/5nBtODBwYPkPyAq5y191XZ7b8.png?width=2816&amp;height=1536" alt="Gestión de herencias" fetchpriority="high"></div>
+      <div class="hero-media">
+        <img src="https://framerusercontent.com/images/5nBtODBwYPkPyAq5y191XZ7b8.png?width=2816&amp;height=1536" alt="Gestión de herencias" fetchpriority="high">
+        <div class="hero-badge"><span class="stars" aria-hidden="true">★★★★★</span><b>4,9</b> en Google<i></i><b>+500</b> herencias</div>
+      </div>
     </div>
   </section>
 
