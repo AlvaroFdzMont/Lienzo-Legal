@@ -186,20 +186,11 @@ html,body{margin:0;padding:0}
 #ll .pmeta::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--brand)}
 #ll .pstep h3{font-size:22px; margin-bottom:6px}
 #ll .pstep p{font-size:15px}
-#ll .ptags{list-style:none; display:flex; flex-wrap:wrap; gap:6px; margin-top:14px}
-#ll .ptags li{font-size:12.5px; color:var(--green-d); background:var(--grey); border-radius:100px; padding:5px 11px}
 #ll .proc-visual{position:relative}
 #ll .proc-visual::before{content:""; position:absolute; inset:20px -20px -20px 20px; border:1px solid var(--brand); border-radius:14px; opacity:.55; transition:transform .8s cubic-bezier(.16,1,.3,1)}
 #ll .proc-visual:hover::before{transform:translate(-6px,-6px)}
 #ll .proc-img{position:relative; aspect-ratio:.82; border-radius:14px; overflow:hidden}
 #ll .proc-img img{width:100%; height:100%; object-fit:cover}
-#ll .pfloat{position:absolute; z-index:2; display:flex; align-items:center; gap:11px; background:rgba(255,255,255,.93); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:12px; padding:12px 16px 12px 12px; font-size:13.5px; font-weight:500; line-height:1.25; box-shadow:0 22px 44px -26px rgba(45,70,74,.55); animation:ll-float 6s ease-in-out infinite}
-#ll .pfloat .ic{width:34px; height:34px; border-radius:9px; background:var(--green-d); display:grid; place-items:center; flex-shrink:0}
-#ll .pfloat .ic svg{width:17px; height:17px; stroke:#fff; fill:none; stroke-width:2}
-#ll .pfloat small{display:block; font-weight:400; color:var(--muted); font-size:12px; margin-top:2px}
-#ll .pf1{top:30px; left:-44px}
-#ll .pf2{top:47%; right:-40px; animation-delay:-2s}
-#ll .pf3{bottom:36px; left:-30px; animation-delay:-4s}
 @keyframes ll-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 
 /* Cita + stats */
@@ -336,25 +327,30 @@ html,body{margin:0;padding:0}
 /* Casos de éxito */
 #ll .cases-sec{background:var(--grey)}
 #ll .case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
-#ll .case-card{background:var(--white); border:1px solid var(--line); border-radius:16px; padding:28px; display:flex; flex-direction:column; transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s}
-#ll .case-card:hover{transform:translateY(-6px); box-shadow:0 30px 60px -36px rgba(45,70,74,.5)}
-#ll .case-card.hl{background:var(--green-d); border-color:transparent; color:#fff}
-#ll .case-tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:22px}
-#ll .case-tags span{font-size:12px; font-weight:500; color:var(--green-d); background:var(--grey); border-radius:100px; padding:5px 11px}
-#ll .case-card.hl .case-tags span{color:var(--pale); background:rgba(255,255,255,.1)}
-#ll .case-big{font-family:'Satoshi'; font-weight:500; font-size:clamp(36px,3.4vw,46px); letter-spacing:-.04em; line-height:1; color:var(--brand-d)}
-#ll .case-card.hl .case-big{color:#fff}
-#ll .case-lbl{font-size:14px; color:var(--muted); margin:6px 0 22px}
-#ll .case-card.hl .case-lbl{color:var(--pale)}
-#ll .case-card dl{display:grid; gap:12px; margin-bottom:22px}
-#ll .case-card dt{font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--brand-d); margin-bottom:3px}
-#ll .case-card.hl dt{color:var(--pale); opacity:.75}
-#ll .case-card dd{font-size:14.5px; color:var(--muted); line-height:1.5}
-#ll .case-card.hl dd{color:var(--pale)}
-#ll .case-foot{margin-top:auto; padding-top:16px; border-top:1px solid var(--line); display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--muted)}
-#ll .case-card.hl .case-foot{border-color:rgba(255,255,255,.14); color:var(--pale)}
+#ll .case-card{position:relative; border-radius:16px; overflow:hidden; aspect-ratio:3/4; background:var(--green-d); color:#fff; cursor:pointer; isolation:isolate; transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s}
+#ll .case-card:hover{transform:translateY(-6px); box-shadow:0 34px 60px -36px rgba(45,70,74,.6)}
+#ll .case-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform 1.2s cubic-bezier(.16,1,.3,1), filter .6s}
+#ll .case-card:hover .case-img,#ll .case-card.open .case-img{transform:scale(1.06); filter:blur(4px) brightness(.6)}
+#ll .case-ov{position:absolute; inset:0; background:linear-gradient(180deg,rgba(45,70,74,.1) 0%,rgba(45,70,74,.3) 40%,rgba(45,70,74,.92) 100%)}
+#ll .case-cover{position:absolute; inset:0; padding:24px; display:flex; flex-direction:column; justify-content:space-between; transition:opacity .35s, transform .5s cubic-bezier(.16,1,.3,1)}
+#ll .case-card:hover .case-cover,#ll .case-card.open .case-cover{opacity:0; transform:translateY(-12px); pointer-events:none}
+#ll .case-tags{display:flex; flex-wrap:wrap; gap:6px}
+#ll .case-tags span{font-size:12px; font-weight:500; color:#fff; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.18); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border-radius:100px; padding:5px 11px}
+#ll .case-big{font-family:'Satoshi'; font-weight:500; font-size:clamp(38px,3.6vw,50px); letter-spacing:-.04em; line-height:1; color:#fff}
+#ll .case-lbl{font-size:14px; color:var(--pale); margin:6px 0 16px; max-width:28ch}
+#ll .case-hint{display:inline-flex; align-items:center; gap:8px; font-size:13px; color:#fff; opacity:.9}
+#ll .case-hint i{width:28px; height:28px; border-radius:50%; border:1px solid rgba(255,255,255,.55); display:grid; place-items:center; font-style:normal; font-size:16px; transition:background .2s}
+#ll .case-card:hover .case-hint i{background:rgba(255,255,255,.15)}
+#ll .case-body{position:absolute; inset:0; padding:24px; display:flex; flex-direction:column; opacity:0; transform:translateY(26px); transition:opacity .4s, transform .55s cubic-bezier(.16,1,.3,1); overflow:auto}
+#ll .case-card:hover .case-body,#ll .case-card.open .case-body{opacity:1; transform:none}
+#ll .case-mini{font-family:'Satoshi'; font-weight:500; font-size:24px; letter-spacing:-.03em; line-height:1.1; margin-bottom:16px; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,.16)}
+#ll .case-mini small{display:block; font-family:'Inter'; font-weight:400; font-size:12.5px; color:var(--pale); margin-top:4px}
+#ll .case-body dl{display:grid; gap:11px; margin-bottom:18px}
+#ll .case-body dt{font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--pale); opacity:.75; margin-bottom:3px}
+#ll .case-body dd{font-size:13.5px; color:#fff; line-height:1.5}
+#ll .case-foot{margin-top:auto; padding-top:14px; border-top:1px solid rgba(255,255,255,.16); display:flex; align-items:center; gap:8px; font-size:13px; color:var(--pale)}
 #ll .case-foot .stars{color:var(--gold); letter-spacing:1px}
-#ll .case-foot b{color:inherit; font-weight:500}
+#ll .case-foot b{color:#fff; font-weight:500}
 
 /* Equipo */
 #ll .team-head{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:56px}
@@ -476,7 +472,6 @@ html,body{margin:0;padding:0}
 @media (prefers-reduced-motion: reduce){
   #ll .marquee-track{animation:none; flex-wrap:wrap}
   #ll .nav{animation:none}
-  #ll .pfloat{animation:none}
   #ll .cstep.enter{animation:none}
   #ll .btn-dark::after{display:none}
   #ll .video-play::after{animation:none}
@@ -510,7 +505,10 @@ html,body{margin:0;padding:0}
   #ll .mega-item > span > span{color:var(--muted); font-size:12.5px}
   #ll .mega-actions{grid-template-columns:1fr 1fr; padding:6px 0 10px}
   #ll .btn-ghost{color:var(--ink); border-color:var(--line)}
-  #ll .case-grid{grid-template-columns:1fr}
+  #ll .case-grid{grid-template-columns:1fr; max-width:440px; margin:0 auto}
+  #ll .case-card{aspect-ratio:auto; height:480px}
+  #ll .case-card:hover{transform:none; box-shadow:none}
+  #ll .case-body{padding:22px}
   #ll .team-head{grid-template-columns:1fr; gap:14px; margin-bottom:40px}
   #ll .principles{grid-template-columns:1fr 1fr; border:none; gap:16px; margin-bottom:48px}
   #ll .principle{border:1px solid var(--line); border-radius:12px; padding:20px; margin:0}
@@ -538,7 +536,6 @@ html,body{margin:0;padding:0}
   #ll .proc-grid,#ll .quote-grid,#ll .calc-grid,#ll .faq-grid{grid-template-columns:1fr; gap:40px}
   #ll .proc-grid{gap:56px}
   #ll .proc-visual::before{display:none}
-  #ll .pf1{left:12px} #ll .pf2{right:12px} #ll .pf3{left:12px}
   #ll .timeline{max-width:440px; margin:0 auto}
   #ll .tl-line,#ll .pstep .n{display:none}
   #ll .pstep{display:block; padding:0}
@@ -551,7 +548,6 @@ html,body{margin:0;padding:0}
   #ll .pmeta{max-width:calc(100% - 48px)}
   #ll .pconn{--c:0; display:block; position:relative; width:10px; height:44px; margin:0 auto; background:radial-gradient(circle at center, var(--line) 2.6px, transparent 3.2px) center/10px 11px repeat-y}
   #ll .pconn::before{content:""; position:absolute; inset:0; background:radial-gradient(circle at center, var(--brand) 2.6px, transparent 3.2px) center/10px 11px repeat-y; clip-path:inset(0 0 calc(100% - var(--c)*1%) 0)}
-  #ll .pfloat{display:none}
   #ll .proc-visual{width:100%; max-width:420px; margin:0 auto}
   #ll .proc-img{aspect-ratio:1}
   #ll .pstep.on .pbody{transform:none}
@@ -593,7 +589,6 @@ html,body{margin:0;padding:0}
   #ll .member .ph{aspect-ratio:4/3.6}
   #ll .map-wrap{min-height:320px}
   #ll .map-pin{left:12px; bottom:12px}
-  #ll .case-card{padding:24px 20px}
 }
 </style>
 </head>
@@ -726,7 +721,6 @@ html,body{margin:0;padding:0}
               <span class="pmeta">Día 1 · Presupuesto en 48h</span>
               <h3>Calcula y cuéntanos</h3>
               <p>Usas la calculadora y un especialista revisa tu caso. Recibes un presupuesto cerrado en 48h, sin sorpresas.</p>
-              <ul class="ptags"><li>Calculadora</li><li>Revisión por abogado</li><li>Precio cerrado</li></ul>
             </div></div><span class="pconn" aria-hidden="true"></span>
           </li>
           <li class="pstep">
@@ -735,7 +729,6 @@ html,body{margin:0;padding:0}
               <span class="pmeta">Semanas 1–6 · Nos encargamos</span>
               <h3>Gestionamos todo</h3>
               <p>Preparamos la documentación legal y fiscal, optimizamos los impuestos y te mantenemos informado en cada avance.</p>
-              <ul class="ptags"><li>Documentación</li><li>Impuesto de sucesiones</li><li>Plusvalía</li><li>Notaría</li></ul>
             </div></div><span class="pconn" aria-hidden="true"></span>
           </li>
           <li class="pstep">
@@ -744,16 +737,12 @@ html,body{margin:0;padding:0}
               <span class="pmeta">Cierre · Una sola firma</span>
               <h3>Cobras tu herencia</h3>
               <p>Firmas lo necesario y recibes lo que te corresponde, pagando el mínimo legal.</p>
-              <ul class="ptags"><li>Adjudicación</li><li>Registro</li><li>Herencia cobrada</li></ul>
             </div></div>
           </li>
         </ol>
         <div class="proc-visual">
           <!-- ←EDITAR src -->
           <div class="proc-img"><img src="https://framerusercontent.com/images/Mud170avDSkPA3GxsRwZHYIlU.png?width=2400&amp;height=2400" alt="Proceso de gestión de herencia" loading="lazy"></div>
-          <div class="pfloat pf1"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span><span>Presupuesto en 48h<small>cerrado y sin letra pequeña</small></span></div>
-          <div class="pfloat pf2"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span><span>Impuestos optimizados<small>bonificaciones de tu comunidad</small></span></div>
-          <div class="pfloat pf3"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span>Herencia cobrada<small>tú solo firmas</small></span></div>
         </div>
       </div>
     </div>
@@ -990,36 +979,58 @@ html,body{margin:0;padding:0}
   <section id="casos" class="cases-sec">
     <div class="wrap">
       <div class="proof-head"><h2 class="sec-h2 center">Casos de éxito</h2><p class="sec-lead center">Herencias reales resueltas con precio cerrado. Nombres modificados por confidencialidad.</p></div>
+      <!-- ←EDITAR: fotos de stock (Unsplash); sustituir por imágenes propias -->
       <div class="case-grid">
-        <article class="case-card hl">
-          <div class="case-tags"><span>Madrid</span><span>4 hermanos</span><span>Vivienda + cuentas</span></div>
-          <div class="case-big">14.300 €</div><div class="case-lbl">ahorrados en el impuesto de sucesiones</div>
-          <dl>
-            <dt>Situación</dt><dd>Piso familiar y dos cuentas bancarias. Los hermanos no se ponían de acuerdo y el plazo de 6 meses estaba a punto de vencer.</dd>
-            <dt>Qué hicimos</dt><dd>Solicitamos la prórroga, aplicamos la reducción por vivienda habitual y la bonificación del 99 % de Madrid a cada heredero.</dd>
-            <dt>Resultado</dt><dd>Herencia adjudicada en 7 semanas, sin recargos y con el piso listo para vender.</dd>
-          </dl>
-          <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Marta G.</b> · Madrid</div>
+        <article class="case-card" tabindex="0">
+          <img class="case-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80" alt="" loading="lazy">
+          <div class="case-ov"></div>
+          <div class="case-cover">
+            <div class="case-tags"><span>Madrid</span><span>4 hermanos</span><span>Vivienda + cuentas</span></div>
+            <div><div class="case-big">14.300 €</div><div class="case-lbl">ahorrados en el impuesto de sucesiones</div><span class="case-hint"><i>+</i> Ver el caso</span></div>
+          </div>
+          <div class="case-body">
+            <div class="case-mini">14.300 € <small>ahorrados en el impuesto de sucesiones</small></div>
+            <dl>
+              <dt>Situación</dt><dd>Piso familiar y dos cuentas bancarias. Los hermanos no se ponían de acuerdo y el plazo de 6 meses estaba a punto de vencer.</dd>
+              <dt>Qué hicimos</dt><dd>Solicitamos la prórroga, aplicamos la reducción por vivienda habitual y la bonificación del 99 % de Madrid a cada heredero.</dd>
+              <dt>Resultado</dt><dd>Herencia adjudicada en 7 semanas, sin recargos y con el piso listo para vender.</dd>
+            </dl>
+            <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Marta G.</b> · Madrid</div>
+          </div>
         </article>
-        <article class="case-card">
-          <div class="case-tags"><span>Cataluña</span><span>Cónyuge</span><span>Vivienda habitual</span></div>
-          <div class="case-big">3 semanas</div><div class="case-lbl">desde la primera llamada hasta la firma</div>
-          <dl>
-            <dt>Situación</dt><dd>Viuda con vivienda en Barcelona y sin testamento. Necesitaba acceder a las cuentas bloqueadas cuanto antes.</dd>
-            <dt>Qué hicimos</dt><dd>Declaración de herederos ante notario, liquidación del impuesto con bonificación del 99 % para cónyuge y desbloqueo bancario.</dd>
-            <dt>Resultado</dt><dd>Cuentas liberadas y vivienda inscrita a su nombre en 21 días.</dd>
-          </dl>
-          <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Yolanda C.</b> · Barcelona</div>
+        <article class="case-card" tabindex="0">
+          <img class="case-img" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=900&q=80" alt="" loading="lazy">
+          <div class="case-ov"></div>
+          <div class="case-cover">
+            <div class="case-tags"><span>Cataluña</span><span>Cónyuge</span><span>Vivienda habitual</span></div>
+            <div><div class="case-big">3 semanas</div><div class="case-lbl">desde la primera llamada hasta la firma</div><span class="case-hint"><i>+</i> Ver el caso</span></div>
+          </div>
+          <div class="case-body">
+            <div class="case-mini">3 semanas <small>desde la primera llamada hasta la firma</small></div>
+            <dl>
+              <dt>Situación</dt><dd>Viuda con vivienda en Barcelona y sin testamento. Necesitaba acceder a las cuentas bloqueadas cuanto antes.</dd>
+              <dt>Qué hicimos</dt><dd>Declaración de herederos ante notario, liquidación del impuesto con bonificación del 99 % para cónyuge y desbloqueo bancario.</dd>
+              <dt>Resultado</dt><dd>Cuentas liberadas y vivienda inscrita a su nombre en 21 días.</dd>
+            </dl>
+            <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Yolanda C.</b> · Barcelona</div>
+          </div>
         </article>
-        <article class="case-card">
-          <div class="case-tags"><span>Andalucía</span><span>Proindiviso</span><span>3 herederos</span></div>
-          <div class="case-big">0 €</div><div class="case-lbl">de impuesto de sucesiones para los tres hijos</div>
-          <dl>
-            <dt>Situación</dt><dd>Casa heredada en Málaga a partes iguales. Uno de los hermanos quería vender y los otros dos, quedársela.</dd>
-            <dt>Qué hicimos</dt><dd>Aplicamos la reducción de 1 M€ por heredero de Andalucía y mediamos la compra de la tercera parte por los otros dos hermanos.</dd>
-            <dt>Resultado</dt><dd>Sin impuesto de sucesiones, sin juicio de división y cada uno con lo que quería.</dd>
-          </dl>
-          <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Agustín L.</b> · Málaga</div>
+        <article class="case-card" tabindex="0">
+          <img class="case-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80" alt="" loading="lazy">
+          <div class="case-ov"></div>
+          <div class="case-cover">
+            <div class="case-tags"><span>Andalucía</span><span>Proindiviso</span><span>3 herederos</span></div>
+            <div><div class="case-big">0 €</div><div class="case-lbl">de impuesto de sucesiones para los tres hijos</div><span class="case-hint"><i>+</i> Ver el caso</span></div>
+          </div>
+          <div class="case-body">
+            <div class="case-mini">0 € <small>de impuesto de sucesiones para los tres hijos</small></div>
+            <dl>
+              <dt>Situación</dt><dd>Casa heredada en Málaga a partes iguales. Uno de los hermanos quería vender y los otros dos, quedársela.</dd>
+              <dt>Qué hicimos</dt><dd>Aplicamos la reducción de 1 M€ por heredero de Andalucía y mediamos la compra de la tercera parte por los otros dos hermanos.</dd>
+              <dt>Resultado</dt><dd>Sin impuesto de sucesiones, sin juicio de división y cada uno con lo que quería.</dd>
+            </dl>
+            <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Agustín L.</b> · Málaga</div>
+          </div>
         </article>
       </div>
     </div>
@@ -1354,6 +1365,13 @@ html,body{margin:0;padding:0}
       pushEv('play_video');
     });
 
+    /* ===== Casos de éxito (tap en táctil) ===== */
+    var noHover=window.matchMedia('(hover: none)').matches;
+    $$('.case-card').forEach(function(c){
+      c.addEventListener('click',function(){ if(!noHover) return; var o=c.classList.contains('open'); $$('.case-card.open').forEach(function(x){ x.classList.remove('open'); }); if(!o) c.classList.add('open'); });
+      c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.classList.toggle('open'); } });
+    });
+
     /* ===== FAQ (apertura animada) ===== */
     $$('.qa').forEach(function(d){
       var sum=d.querySelector('summary'), a=d.querySelector('.a');
@@ -1403,7 +1421,7 @@ html,body{margin:0;padding:0}
     var groups=[
       ['.hero .lead',''],['.hero .trustby',''],['.hero-media','rev-clip'],
       ['.impact h2',''],['.feat','rev-s'],
-      ['.proc-top',''],['.pstep','rev-l'],['.proc-visual','rev-r'],['.pfloat','rev-s'],
+      ['.proc-top',''],['.pstep','rev-l'],['.proc-visual','rev-r'],
       ['.quote-sec .head',''],['.quote-img','rev-l'],['.quote-body',''],
       ['.vtext',''],['.video-frame','rev-r'],
       ['.calc-grid > div',''],['.guar',''],
