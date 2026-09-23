@@ -361,10 +361,15 @@ html,body{margin:0;padding:0}
 #ll .member .ph{aspect-ratio:4/5; position:relative}
 #ll .member .ph img{width:100%; height:100%; object-fit:cover; filter:grayscale(.2); transition:transform 1s cubic-bezier(.16,1,.3,1), filter .6s}
 #ll .member:hover .ph img{transform:scale(1.05); filter:none}
-#ll .mov{position:absolute; inset:0; background:linear-gradient(180deg,rgba(45,70,74,0) 40%,rgba(45,70,74,.35) 65%,rgba(45,70,74,.9) 100%)}
-#ll .member .mq{position:absolute; left:0; right:0; bottom:88px; padding:0 20px; color:var(--pale); font-size:13.5px; line-height:1.45; opacity:0; transform:translateY(10px); transition:opacity .4s, transform .5s cubic-bezier(.16,1,.3,1)}
-#ll .member:hover .mq{opacity:1; transform:none}
-#ll .mi{position:absolute; left:0; right:0; bottom:0; padding:0 20px 20px; display:flex; justify-content:space-between; align-items:flex-end; gap:10px; color:#fff}
+#ll .mov{position:absolute; inset:0; background:linear-gradient(180deg,rgba(45,70,74,0) 35%,rgba(45,70,74,.4) 62%,rgba(45,70,74,.94) 100%); transition:background .5s}
+#ll .member:hover .mov{background:linear-gradient(180deg,rgba(45,70,74,.05) 15%,rgba(45,70,74,.6) 50%,rgba(45,70,74,.96) 100%)}
+#ll .mi{position:absolute; left:0; right:0; bottom:0; padding:0 20px 20px; color:#fff}
+#ll .mq{display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1), opacity .35s}
+#ll .member:hover .mq{grid-template-rows:1fr; opacity:1}
+#ll .mq p{overflow:hidden; color:var(--pale); font-size:13.5px; line-height:1.45}
+#ll .mq p::before{content:""; display:block; width:28px; height:2px; background:var(--brand); margin-bottom:10px}
+#ll .member:hover .mq p{padding-bottom:16px; margin-bottom:14px; border-bottom:1px solid rgba(255,255,255,.18)}
+#ll .mrow{display:flex; justify-content:space-between; align-items:flex-end; gap:10px}
 #ll .mi b{display:block; font-family:'Satoshi'; font-weight:500; font-size:20px; letter-spacing:-.02em; margin-bottom:2px; color:#fff}
 #ll .mi span{font-size:13px; color:var(--pale)}
 #ll .mi a{width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.45); display:grid; place-items:center; flex-shrink:0; color:#fff; transition:background .2s, color .2s, border-color .2s}
@@ -505,7 +510,7 @@ html,body{margin:0;padding:0}
   #ll .case-card{aspect-ratio:auto; height:480px}
   #ll .case-card:hover{transform:none; box-shadow:none}
   #ll .case-body{padding:22px}
-  #ll .case-close{display:grid; place-items:center; position:absolute; top:12px; right:12px; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.45); background:rgba(255,255,255,.1); color:#fff; font-size:22px; line-height:1; cursor:pointer}
+  #ll .case-close{display:grid; z-index:3; touch-action:manipulation; place-items:center; position:absolute; top:12px; right:12px; width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.45); background:rgba(255,255,255,.1); color:#fff; font-size:22px; line-height:1; cursor:pointer}
   #ll .case-close:active{background:rgba(255,255,255,.25)}
   #ll .case-mini{padding-right:44px}
   #ll .team-head{grid-template-columns:1fr; gap:14px; margin-bottom:40px}
@@ -1047,20 +1052,20 @@ html,body{margin:0;padding:0}
       <!-- ←EDITAR: nombres, cargos y fotos reales del equipo (fotos actuales: stock de Unsplash) -->
       <div class="team-grid">
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" alt="Mikel Aramburu" loading="lazy"><div class="mov"></div><p class="mq">“Una herencia bien gestionada es la que la familia olvida rápido.”</p>
-          <div class="mi"><div><b>Mikel Aramburu</b><span>Responsable · Abogado sucesorio</span></div><a href="#" aria-label="LinkedIn de Mikel Aramburu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" alt="Mikel Aramburu" loading="lazy"><div class="mov"></div>
+          <div class="mi"><div class="mq"><p>“Una herencia bien gestionada es la que la familia olvida rápido.”</p></div><div class="mrow"><div><b>Mikel Aramburu</b><span>Responsable · Abogado sucesorio</span></div><a href="#" aria-label="LinkedIn de Mikel Aramburu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Laura Etxeberria" loading="lazy"><div class="mov"></div><p class="mq">“Cada comunidad tiene sus reglas. Mi trabajo es que juegues con todas a favor.”</p>
-          <div class="mi"><div><b>Laura Etxeberria</b><span>Abogada fiscalista</span></div><a href="#" aria-label="LinkedIn de Laura Etxeberria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Laura Etxeberria" loading="lazy"><div class="mov"></div>
+          <div class="mi"><div class="mq"><p>“Cada comunidad tiene sus reglas. Mi trabajo es que juegues con todas a favor.”</p></div><div class="mrow"><div><b>Laura Etxeberria</b><span>Abogada fiscalista</span></div><a href="#" aria-label="LinkedIn de Laura Etxeberria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Daniel Ortega" loading="lazy"><div class="mov"></div><p class="mq">“Donde otros ven un bloqueo entre hermanos, yo veo un acuerdo pendiente.”</p>
-          <div class="mi"><div><b>Daniel Ortega</b><span>Especialista en proindivisos</span></div><a href="#" aria-label="LinkedIn de Daniel Ortega"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Daniel Ortega" loading="lazy"><div class="mov"></div>
+          <div class="mi"><div class="mq"><p>“Donde otros ven un bloqueo entre hermanos, yo veo un acuerdo pendiente.”</p></div><div class="mrow"><div><b>Daniel Ortega</b><span>Especialista en proindivisos</span></div><a href="#" aria-label="LinkedIn de Daniel Ortega"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
         <article class="member">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80" alt="Carmen Ruiz" loading="lazy"><div class="mov"></div><p class="mq">“Te llamo yo. Nunca tendrás que perseguirnos.”</p>
-          <div class="mi"><div><b>Carmen Ruiz</b><span>Gestión y atención al cliente</span></div><a href="#" aria-label="LinkedIn de Carmen Ruiz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80" alt="Carmen Ruiz" loading="lazy"><div class="mov"></div>
+          <div class="mi"><div class="mq"><p>“Te llamo yo. Nunca tendrás que perseguirnos.”</p></div><div class="mrow"><div><b>Carmen Ruiz</b><span>Gestión y atención al cliente</span></div><a href="#" aria-label="LinkedIn de Carmen Ruiz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div></div></div>
         </article>
       </div>
     </div>
@@ -1361,9 +1366,12 @@ html,body{margin:0;padding:0}
     });
 
     /* ===== Casos de éxito (tap en táctil) ===== */
-    var noHover=window.matchMedia('(hover: none)').matches;
+    var noHover=window.matchMedia('(hover: none)').matches, touched=false;
+    document.addEventListener('touchstart',function(){ touched=true; },{passive:true});
     $$('.case-card').forEach(function(c){
-      c.addEventListener('click',function(e){ if(!noHover) return; if(e.target.closest('.case-close')){ c.classList.remove('open'); return; } var o=c.classList.contains('open'); $$('.case-card.open').forEach(function(x){ x.classList.remove('open'); }); if(!o) c.classList.add('open'); });
+      var x=c.querySelector('.case-close');
+      x.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); c.classList.remove('open'); });
+      c.addEventListener('click',function(e){ if(!(noHover||touched)) return; var o=c.classList.contains('open'); $$('.case-card.open').forEach(function(x){ x.classList.remove('open'); }); if(!o) c.classList.add('open'); });
       c.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); c.classList.toggle('open'); } });
     });
 
