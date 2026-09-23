@@ -45,7 +45,7 @@ html,body{margin:0;padding:0}
 #ll .sec-h2.center{max-width:none; text-align:center}
 #ll .sec-lead{color:var(--muted); font-size:18px; margin-top:14px; max-width:52ch}
 #ll .sec-lead.center{margin-left:auto; margin-right:auto}
-#ll .tag{display:inline-block; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--green); background:var(--green-tint); padding:5px 12px; border-radius:100px; margin-bottom:14px}
+#ll .tag{display:inline-block; align-self:flex-start; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--green); background:var(--green-tint); padding:5px 12px; border-radius:100px; margin-bottom:14px}
 #ll .ck{flex-shrink:0; width:20px; height:20px; border-radius:50%; background:var(--green-d); color:#fff; display:grid; place-items:center; font-size:11px; margin-top:1px}
 #ll :focus-visible{outline:2px solid var(--green); outline-offset:3px}
 
@@ -71,10 +71,48 @@ html,body{margin:0;padding:0}
 #ll .logo{font-family:'Archivo',sans-serif; font-weight:600; font-size:21px; letter-spacing:.02em; text-transform:uppercase; color:var(--green-d); display:flex; align-items:baseline; gap:3px}
 #ll .logo sup{font-size:11px; color:var(--ink)}
 #ll .nav-links{display:flex; gap:28px; font-size:15px}
-#ll .nav-links a{position:relative; color:var(--green-d); padding:6px 0; transition:color .2s}
-#ll .nav-links a::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1.5px; background:var(--brand); transform:scaleX(0); transform-origin:left; transition:transform .3s cubic-bezier(.16,1,.3,1)}
-#ll .nav-links a:hover::after,#ll .nav-links a.active::after{transform:scaleX(1)}
-#ll .nav-links a.active{color:var(--brand-d)}
+#ll .nav-links > a,#ll .nav-links > .has-mega > a{position:relative; display:inline-flex; align-items:center; gap:5px; color:var(--green-d); padding:6px 0; transition:color .2s}
+#ll .nav-links > a::after,#ll .nav-links > .has-mega > a::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1.5px; background:var(--brand); transform:scaleX(0); transform-origin:left; transition:transform .3s cubic-bezier(.16,1,.3,1)}
+#ll .nav-links > a:hover::after,#ll .nav-links > a.active::after,#ll .has-mega.open > a::after,#ll .nav-links > .has-mega > a.active::after{transform:scaleX(1)}
+#ll .nav-links > a.active,#ll .has-mega.open > a,#ll .nav-links > .has-mega > a.active{color:var(--brand-d)}
+#ll .chev{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; transition:transform .3s}
+#ll .has-mega.open .chev{transform:rotate(180deg)}
+
+/* Megamenú */
+#ll .has-mega{position:static}
+#ll .mega{position:absolute; left:0; right:0; top:100%; padding:10px 48px 24px; opacity:0; visibility:hidden; transform:translateY(-10px); pointer-events:none; transition:opacity .28s ease, transform .4s cubic-bezier(.16,1,.3,1), visibility 0s .4s}
+#ll .has-mega.open .mega{opacity:1; visibility:visible; transform:none; transition:opacity .28s ease, transform .4s cubic-bezier(.16,1,.3,1)}
+#ll .has-mega.open .mega-panel{pointer-events:auto}
+#ll .mega-inner{max-width:var(--maxw); margin:0 auto; display:flex}
+#ll .has-mega.right .mega-inner{justify-content:flex-end}
+#ll .mega-panel{background:var(--green-d); color:#fff; border-radius:18px; padding:30px; border:1px solid rgba(255,255,255,.08); box-shadow:0 44px 90px -34px rgba(20,33,35,.65)}
+#ll .mega-kicker{font-size:13px; color:rgba(255,255,255,.55); margin-bottom:4px}
+#ll .mega h3{color:#fff; font-size:26px; margin-bottom:20px; letter-spacing:-.03em}
+#ll .mega h3 em{font-style:normal; font-weight:400; color:var(--pale)}
+#ll .mega-serv{width:min(880px,100%); display:grid; grid-template-columns:1.55fr 1fr; gap:28px}
+#ll .mega-list{display:grid; grid-template-columns:1fr 1fr; gap:4px 12px}
+#ll .mega-item{display:flex; gap:13px; align-items:flex-start; padding:12px; border-radius:12px; transition:background .2s, transform .3s cubic-bezier(.16,1,.3,1)}
+#ll .mega-item:hover{background:rgba(255,255,255,.07); transform:translateX(3px)}
+#ll .mega-item > .ic{width:42px; height:42px; border-radius:10px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); display:grid; place-items:center; flex-shrink:0}
+#ll .mega-item > .ic svg{width:20px; height:20px; stroke:#fff; fill:none; stroke-width:1.6}
+#ll .mega-item b{display:block; font-family:'Satoshi'; font-weight:500; font-size:15.5px; color:#fff; margin-bottom:2px}
+#ll .mega-item > span > span{display:block; font-size:13px; color:rgba(255,255,255,.62); line-height:1.4}
+#ll .mega-feat{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:14px}
+#ll .mega-feat img{width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:10px}
+#ll .mega-feat b{display:block; font-family:'Satoshi'; font-weight:500; font-size:17px; color:#fff; margin-bottom:6px}
+#ll .mega-feat p{font-size:13.5px; color:rgba(255,255,255,.65)}
+#ll .mega-feat .btn{justify-content:center; margin-top:auto}
+#ll .mega-about{width:min(440px,100%)}
+#ll .mega-about h3{margin-bottom:4px}
+#ll .mega-sub{font-size:14px; color:rgba(255,255,255,.62); margin-bottom:16px}
+#ll .mega-about img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:12px; margin-bottom:16px}
+#ll .mega-txt{font-size:14.5px; color:var(--pale); margin-bottom:16px}
+#ll .mega-seals{display:flex; flex-wrap:wrap; gap:8px; padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid rgba(255,255,255,.12)}
+#ll .mega-seals span{font-size:12px; color:var(--pale); border:1px solid rgba(255,255,255,.16); border-radius:100px; padding:5px 11px}
+#ll .mega-actions{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+#ll .mega-actions .btn{justify-content:center}
+#ll .btn-ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.3)}
+#ll .btn-ghost:hover{background:rgba(255,255,255,.08); transform:translateY(-3px)}
 #ll .burger{display:none; width:40px; height:40px; background:none; border:none; cursor:pointer; position:relative}
 #ll .burger span{position:absolute; left:10px; width:20px; height:2px; background:var(--ink); border-radius:2px; transition:transform .3s cubic-bezier(.16,1,.3,1), opacity .2s, top .3s}
 #ll .burger span:nth-child(1){top:13px} #ll .burger span:nth-child(2){top:19px} #ll .burger span:nth-child(3){top:25px}
@@ -289,10 +327,73 @@ html,body{margin:0;padding:0}
 #ll .review .who b{font-size:14px; display:block}
 #ll .review .who span{font-size:12px; color:var(--muted)}
 #ll .review .g{margin-left:auto; font-size:11px; color:var(--muted)}
-#ll .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-#ll .case{background:var(--green-d); color:#fff; border-radius:8px; padding:24px}
-#ll .case .big{font-family:'Satoshi'; font-weight:500; font-size:30px; letter-spacing:-.03em}
-#ll .case p{color:var(--pale); font-size:13.5px; margin-top:4px}
+
+/* Casos de éxito */
+#ll .cases-sec{background:var(--grey)}
+#ll .case-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+#ll .case-card{background:var(--white); border:1px solid var(--line); border-radius:16px; padding:28px; display:flex; flex-direction:column; transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s}
+#ll .case-card:hover{transform:translateY(-6px); box-shadow:0 30px 60px -36px rgba(45,70,74,.5)}
+#ll .case-card.hl{background:var(--green-d); border-color:transparent; color:#fff}
+#ll .case-tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:22px}
+#ll .case-tags span{font-size:12px; font-weight:500; color:var(--green-d); background:var(--grey); border-radius:100px; padding:5px 11px}
+#ll .case-card.hl .case-tags span{color:var(--pale); background:rgba(255,255,255,.1)}
+#ll .case-big{font-family:'Satoshi'; font-weight:500; font-size:clamp(36px,3.4vw,46px); letter-spacing:-.04em; line-height:1; color:var(--brand-d)}
+#ll .case-card.hl .case-big{color:#fff}
+#ll .case-lbl{font-size:14px; color:var(--muted); margin:6px 0 22px}
+#ll .case-card.hl .case-lbl{color:var(--pale)}
+#ll .case-card dl{display:grid; gap:12px; margin-bottom:22px}
+#ll .case-card dt{font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--brand-d); margin-bottom:3px}
+#ll .case-card.hl dt{color:var(--pale); opacity:.75}
+#ll .case-card dd{font-size:14.5px; color:var(--muted); line-height:1.5}
+#ll .case-card.hl dd{color:var(--pale)}
+#ll .case-foot{margin-top:auto; padding-top:16px; border-top:1px solid var(--line); display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--muted)}
+#ll .case-card.hl .case-foot{border-color:rgba(255,255,255,.14); color:var(--pale)}
+#ll .case-foot .stars{color:var(--gold); letter-spacing:1px}
+#ll .case-foot b{color:inherit; font-weight:500}
+
+/* Equipo */
+#ll .team-head{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:56px}
+#ll .team-head .sec-lead{margin-top:0}
+#ll .principles{display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:64px}
+#ll .principle{padding:28px 24px 28px 0; border-right:1px solid var(--line); margin-right:24px}
+#ll .principle:last-child{border-right:none; margin-right:0}
+#ll .principle span{display:block; font-family:'Satoshi'; font-weight:500; font-size:13px; color:var(--brand); letter-spacing:.06em; margin-bottom:12px}
+#ll .principle h3{font-size:19px; margin-bottom:6px}
+#ll .principle p{font-size:14px}
+#ll .team-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px}
+#ll .member{position:relative; border-radius:16px; overflow:hidden; background:var(--white); border:1px solid var(--line)}
+#ll .member .ph{aspect-ratio:4/5; overflow:hidden; position:relative}
+#ll .member .ph img{width:100%; height:100%; object-fit:cover; filter:grayscale(.25); transition:transform 1s cubic-bezier(.16,1,.3,1), filter .6s}
+#ll .member:hover .ph img{transform:scale(1.05); filter:none}
+#ll .member .mq{position:absolute; left:0; right:0; bottom:0; padding:22px 18px 18px; color:#fff; font-size:14px; line-height:1.45; background:linear-gradient(180deg,rgba(45,70,74,0),rgba(45,70,74,.92)); opacity:0; transform:translateY(12px); transition:opacity .4s, transform .5s cubic-bezier(.16,1,.3,1)}
+#ll .member:hover .mq{opacity:1; transform:none}
+#ll .mi{padding:16px 18px 18px; display:flex; justify-content:space-between; align-items:center; gap:10px}
+#ll .mi b{display:block; font-family:'Satoshi'; font-weight:500; font-size:17px; margin-bottom:2px}
+#ll .mi span{font-size:13px; color:var(--muted)}
+#ll .mi a{width:34px; height:34px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; flex-shrink:0; color:var(--green-d); transition:background .2s, color .2s}
+#ll .mi a:hover{background:var(--green-d); color:#fff}
+#ll .mi a svg{width:15px; height:15px; fill:currentColor}
+
+/* Local */
+#ll .local{background:var(--pale)}
+#ll .local-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:48px; align-items:stretch}
+#ll .local-card{background:var(--white); border:1px solid var(--line); border-radius:18px; padding:40px; display:flex; flex-direction:column}
+#ll .local-card .sec-h2{max-width:none}
+#ll .local-info{list-style:none; display:grid; gap:18px; margin:28px 0 30px}
+#ll .local-info li{display:flex; gap:14px; align-items:flex-start}
+#ll .local-info .ic{flex-shrink:0; width:40px; height:40px; border-radius:10px; background:var(--pale); display:grid; place-items:center}
+#ll .local-info .ic svg{width:18px; height:18px; stroke:var(--green-d); fill:none; stroke-width:1.6}
+#ll .local-info b{display:block; font-family:'Satoshi'; font-weight:500; font-size:15px; margin-bottom:2px}
+#ll .local-info span{font-size:14.5px; color:var(--muted); line-height:1.5}
+#ll .local-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:auto}
+#ll .map-wrap{position:relative; border-radius:18px; overflow:hidden; min-height:480px; border:1px solid var(--line); background:var(--grey); box-shadow:0 30px 60px -36px rgba(45,70,74,.5)}
+#ll .map-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0; filter:grayscale(1) sepia(.22) saturate(.85) brightness(1.03) contrast(.98)}
+#ll .map-wrap::after{content:""; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 0 1px rgba(45,70,74,.08), inset 0 -80px 80px -60px rgba(45,70,74,.25)}
+#ll .map-pin{position:absolute; left:20px; bottom:20px; z-index:2; display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.94); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:12px; padding:12px 16px 12px 12px; box-shadow:0 20px 40px -22px rgba(45,70,74,.55); animation:ll-float 6s ease-in-out infinite}
+#ll .map-pin .ic{width:36px; height:36px; border-radius:9px; background:var(--green-d); display:grid; place-items:center; flex-shrink:0}
+#ll .map-pin .ic svg{width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2}
+#ll .map-pin b{display:block; font-family:'Satoshi'; font-weight:500; font-size:14px}
+#ll .map-pin span{font-size:12.5px; color:var(--muted)}
 
 /* Cards imagen */
 #ll .cards-sec{padding-top:0}
@@ -376,14 +477,43 @@ html,body{margin:0;padding:0}
   #ll .video-play::after{animation:none}
 }
 
+@media(max-width:1180px){
+  #ll .mega-serv{width:min(760px,100%); grid-template-columns:1.4fr 1fr}
+  #ll .nav-links{gap:22px}
+}
 @media(max-width:1000px){
   #ll{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
   #ll .wrap{padding:0 28px}
-  #ll .nav-links{position:absolute; left:0; right:0; top:100%; flex-direction:column; gap:0; background:rgba(246,245,237,.96); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); border-bottom:1px solid var(--line); padding:8px 28px 16px; opacity:0; visibility:hidden; transform:translateY(-8px); transition:opacity .25s, transform .3s cubic-bezier(.16,1,.3,1), visibility 0s .3s}
+  #ll .nav-links{position:absolute; left:0; right:0; top:100%; flex-direction:column; gap:0; background:#F6F5ED; border-bottom:1px solid var(--line); padding:8px 28px 16px; opacity:0; visibility:hidden; transform:translateY(-8px); transition:opacity .25s, transform .3s cubic-bezier(.16,1,.3,1), visibility 0s .3s}
   #ll .nav-links.open{opacity:1; visibility:visible; transform:none; transition:opacity .25s, transform .3s cubic-bezier(.16,1,.3,1)}
-  #ll .nav-links a{padding:14px 0; border-bottom:1px solid var(--line); font-size:16px}
-  #ll .nav-links a:last-child{border-bottom:none}
-  #ll .nav-links a::after{display:none}
+  #ll .nav-links{max-height:calc(100vh - var(--nav-h)); overflow-y:auto}
+  #ll .nav-links > a,#ll .has-mega > a{display:flex; width:100%; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line); font-size:16px}
+  #ll .nav-links > a:last-child{border-bottom:none}
+  #ll .nav-links > a::after,#ll .has-mega > a::after{display:none}
+  #ll .has-mega{position:relative}
+  #ll .mega{position:static; padding:0; opacity:1; visibility:visible; transform:none; pointer-events:auto; display:none; transition:none}
+  #ll .has-mega.open .mega{display:block}
+  #ll .mega-inner{display:block}
+  #ll .mega-panel{background:transparent; color:var(--ink); border:none; box-shadow:none; padding:4px 0 10px; width:100%; display:block}
+  #ll .mega-kicker,#ll .mega h3,#ll .mega-feat,#ll .mega-about img,#ll .mega-sub,#ll .mega-txt,#ll .mega-seals{display:none}
+  #ll .mega-list{grid-template-columns:1fr; gap:0}
+  #ll .mega-item{padding:10px 0 10px 4px; gap:12px; border-radius:0}
+  #ll .mega-item:hover{background:none; transform:none}
+  #ll .mega-item > .ic{width:34px; height:34px; background:var(--pale); border-color:var(--line)}
+  #ll .mega-item > .ic svg{stroke:var(--green-d)}
+  #ll .mega-item b{color:var(--ink); font-size:15px}
+  #ll .mega-item > span > span{color:var(--muted); font-size:12.5px}
+  #ll .mega-actions{grid-template-columns:1fr 1fr; padding:6px 0 10px}
+  #ll .btn-ghost{color:var(--ink); border-color:var(--line)}
+  #ll .case-grid{grid-template-columns:1fr}
+  #ll .team-head{grid-template-columns:1fr; gap:14px; margin-bottom:40px}
+  #ll .principles{grid-template-columns:1fr 1fr; border:none; gap:16px; margin-bottom:48px}
+  #ll .principle{border:1px solid var(--line); border-radius:12px; padding:20px; margin:0}
+  #ll .team-grid{grid-template-columns:1fr 1fr; gap:14px}
+  #ll .local-grid{grid-template-columns:1fr; gap:24px}
+  #ll .local-card{padding:28px 24px}
+  #ll .map-wrap{min-height:380px}
+  #ll .local-actions .btn{width:100%; justify-content:center}
   #ll .nav .btn{display:none}
   #ll .burger{display:block}
   #ll .hero .wrap{grid-template-columns:1fr; gap:0; min-height:0; padding-top:36px; padding-bottom:56px}
@@ -424,7 +554,7 @@ html,body{margin:0;padding:0}
   #ll .serv-cta .btn,#ll .urgency-band .btn,#ll .faq-side .btn,#ll .foot-cta .btn,#ll .proc-top .btn{width:100%; justify-content:center}
   #ll .foot-mid{grid-template-columns:1fr 1fr}
   #ll .guarantees .wrap{grid-template-columns:1fr; gap:22px}
-  #ll .reviews,#ll .cases{grid-template-columns:1fr}
+  #ll .reviews{grid-template-columns:1fr}
   #ll .video-sec .wrap{grid-template-columns:1fr; gap:32px}
   #ll .wa-float{bottom:80px}
   #ll .mobile-call{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--green-d); padding:10px 12px calc(10px + env(safe-area-inset-bottom)); gap:10px}
@@ -442,8 +572,14 @@ html,body{margin:0;padding:0}
   #ll .rows b{white-space:normal}
   #ll .result .figure{font-size:30px}
   #ll .calc-body{padding:20px 18px}
-  #ll .reviews,#ll .cases{gap:12px}
+  #ll .reviews{gap:12px}
   #ll .val-row input{font-size:26px}
+  #ll .team-grid{grid-template-columns:1fr}
+  #ll .principles{grid-template-columns:1fr}
+  #ll .member .ph{aspect-ratio:4/3.6}
+  #ll .map-wrap{min-height:320px}
+  #ll .map-pin{left:12px; bottom:12px}
+  #ll .case-card{padding:24px 20px}
 }
 </style>
 </head>
@@ -457,9 +593,44 @@ html,body{margin:0;padding:0}
     <div class="wrap">
       <a href="#" class="logo">lienzo legal <sup>®</sup></a> <!-- ←EDITAR -->
       <nav class="nav-links" id="menu" aria-label="Principal">
-        <a href="#cambia">Qué cambia</a>
+        <div class="has-mega">
+          <a href="#servicios" class="mega-trigger" aria-haspopup="true" aria-expanded="false">Servicios <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="mega"><div class="mega-inner">
+            <div class="mega-panel mega-serv">
+              <div>
+                <div class="mega-kicker">Qué hacemos</div>
+                <h3>Servicios de <em>herencias</em></h3>
+                <div class="mega-list"><a href="#servicios" class="mega-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span><span><b>Aceptación de herencia</b><span>Tramitación y adjudicación de bienes, de inicio a fin.</span></span></a><a href="#servicios" class="mega-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></span><span><b>Impuesto de sucesiones</b><span>Liquidación con todas las bonificaciones de tu comunidad.</span></span></a><a href="#servicios" class="mega-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span><span><b>Proindivisos</b><span>Vende tu parte de una casa heredada sin conflictos.</span></span></a><a href="#servicios" class="mega-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><span><b>Plusvalía municipal</b><span>La calculamos para que no pagues de más.</span></span></a><a href="#servicios" class="mega-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/><path d="M21 21l-5-5"/></svg></span><span><b>Valoración de vivienda</b><span>Tasación con datos reales de mercado.</span></span></a><a href="#servicios" class="mega-item"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></span><span><b>Mediación entre herederos</b><span>Acuerdos cuando no hay acuerdo.</span></span></a></div>
+              </div>
+              <div class="mega-feat">
+                <!-- ←EDITAR src -->
+                <img src="https://framerusercontent.com/images/tAxeWlqfhf7vnZa9GZ6vh1oYY3k.png?width=1200&amp;height=840" alt="" loading="lazy">
+                <div>
+                  <b>¿No sabes por dónde empezar?</b>
+                  <p>Calcula en 1 minuto lo que te corresponde y cuánto puedes ahorrar en impuestos. Sin datos personales.</p>
+                </div>
+                <a href="#calc" class="btn btn-white">Calcular lo que me corresponde</a>
+              </div>
+            </div>
+          </div></div>
+        </div>
         <a href="#proceso">Cómo trabajamos</a>
-        <a href="#servicios">Servicios</a>
+        <a href="#casos">Casos de éxito</a>
+        <div class="has-mega right">
+          <a href="#equipo" class="mega-trigger" aria-haspopup="true" aria-expanded="false">Nosotros <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="mega"><div class="mega-inner">
+            <div class="mega-panel mega-about">
+              <div class="mega-kicker">Hola,</div>
+              <h3>Somos <em>Lienzo Legal</em></h3>
+              <p class="mega-sub">Abogados y fiscalistas especializados en herencias</p>
+              <!-- ←EDITAR src: foto real del equipo -->
+              <img src="https://framerusercontent.com/images/o7TezKmWLw7RktETKfFcOvo5ORM.jpg?width=1400&amp;height=800" alt="Equipo de Lienzo Legal" loading="lazy">
+              <p class="mega-txt">Ayudamos a familias a resolver su herencia sin papeleos, con precio cerrado y pagando el mínimo legal. Menos tecnicismos, más tranquilidad.</p>
+              <div class="mega-seals"><span>★ 4,9 en Google</span><span>+500 herencias</span><span>Abogados colegiados</span></div>
+              <div class="mega-actions"><a href="#local" class="btn btn-white">Contactar</a><a href="#equipo" class="btn btn-ghost">Conocer al equipo</a></div>
+            </div>
+          </div></div>
+        </div>
         <a href="#faq">Preguntas</a>
       </nav>
       <a href="#calc" class="btn btn-pale btn-sm">Calcular lo que me corresponde</a>
@@ -798,10 +969,79 @@ html,body{margin:0;padding:0}
         <div class="review"><div class="stars">★★★★★ <span class="g">Google</span></div><p>"Gestionaron la herencia de mi familia explicándonos todo con claridad. Lo recomiendo."</p><div class="who"><div class="av">Y</div><div><b>Yolanda Cía</b><span>Galicia</span></div></div></div>
         <div class="review"><div class="stars">★★★★★ <span class="g">Google</span></div><p>"Me explican todo de forma muy sencilla. Sin tecnicismos ni sustos."</p><div class="who"><div class="av">A</div><div><b>Agustín López</b><span>Madrid</span></div></div></div>
       </div>
-      <div class="cases">
-        <div class="case"><div class="big">14.300 €</div><p>ahorrados en sucesiones a Marta G. (Madrid)</p></div>
-        <div class="case"><div class="big">3 semanas</div><p>para desbloquear una herencia entre 4 hermanos</p></div>
-        <div class="case"><div class="big">327</div><p>herencias gestionadas solo en 2026</p></div>
+    </div>
+  </section>
+
+  <!-- CASOS DE ÉXITO -->
+  <section id="casos" class="cases-sec">
+    <div class="wrap">
+      <div class="proof-head"><h2 class="sec-h2 center">Casos de éxito</h2><p class="sec-lead center">Herencias reales resueltas con precio cerrado. Nombres modificados por confidencialidad.</p></div>
+      <div class="case-grid">
+        <article class="case-card hl">
+          <div class="case-tags"><span>Madrid</span><span>4 hermanos</span><span>Vivienda + cuentas</span></div>
+          <div class="case-big">14.300 €</div><div class="case-lbl">ahorrados en el impuesto de sucesiones</div>
+          <dl>
+            <dt>Situación</dt><dd>Piso familiar y dos cuentas bancarias. Los hermanos no se ponían de acuerdo y el plazo de 6 meses estaba a punto de vencer.</dd>
+            <dt>Qué hicimos</dt><dd>Solicitamos la prórroga, aplicamos la reducción por vivienda habitual y la bonificación del 99 % de Madrid a cada heredero.</dd>
+            <dt>Resultado</dt><dd>Herencia adjudicada en 7 semanas, sin recargos y con el piso listo para vender.</dd>
+          </dl>
+          <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Marta G.</b> · Madrid</div>
+        </article>
+        <article class="case-card">
+          <div class="case-tags"><span>Cataluña</span><span>Cónyuge</span><span>Vivienda habitual</span></div>
+          <div class="case-big">3 semanas</div><div class="case-lbl">desde la primera llamada hasta la firma</div>
+          <dl>
+            <dt>Situación</dt><dd>Viuda con vivienda en Barcelona y sin testamento. Necesitaba acceder a las cuentas bloqueadas cuanto antes.</dd>
+            <dt>Qué hicimos</dt><dd>Declaración de herederos ante notario, liquidación del impuesto con bonificación del 99 % para cónyuge y desbloqueo bancario.</dd>
+            <dt>Resultado</dt><dd>Cuentas liberadas y vivienda inscrita a su nombre en 21 días.</dd>
+          </dl>
+          <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Yolanda C.</b> · Barcelona</div>
+        </article>
+        <article class="case-card">
+          <div class="case-tags"><span>Andalucía</span><span>Proindiviso</span><span>3 herederos</span></div>
+          <div class="case-big">0 €</div><div class="case-lbl">de impuesto de sucesiones para los tres hijos</div>
+          <dl>
+            <dt>Situación</dt><dd>Casa heredada en Málaga a partes iguales. Uno de los hermanos quería vender y los otros dos, quedársela.</dd>
+            <dt>Qué hicimos</dt><dd>Aplicamos la reducción de 1 M€ por heredero de Andalucía y mediamos la compra de la tercera parte por los otros dos hermanos.</dd>
+            <dt>Resultado</dt><dd>Sin impuesto de sucesiones, sin juicio de división y cada uno con lo que quería.</dd>
+          </dl>
+          <div class="case-foot"><span class="stars" aria-hidden="true">★★★★★</span><b>Agustín L.</b> · Málaga</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section id="equipo" class="team-sec">
+    <div class="wrap">
+      <div class="team-head">
+        <div><span class="tag">Equipo</span><h2 class="sec-h2">Las personas que llevarán tu herencia</h2></div>
+        <p class="sec-lead">Abogados y fiscalistas especializados solo en herencias. Sin rotaciones: la persona que te atiende el primer día es la que firma contigo el último.</p>
+      </div>
+      <div class="principles">
+        <div class="principle"><span>01</span><h3>Sin tecnicismos</h3><p>Te explicamos cada paso en castellano, no en jerga jurídica.</p></div>
+        <div class="principle"><span>02</span><h3>Precio cerrado</h3><p>Lo sabes antes de empezar. Si surge algo, lo hablamos antes, no después.</p></div>
+        <div class="principle"><span>03</span><h3>Una sola persona de contacto</h3><p>Tu abogado tiene nombre, teléfono y te responde el mismo día.</p></div>
+        <div class="principle"><span>04</span><h3>Solo herencias</h3><p>No llevamos divorcios ni despidos. Hacemos una cosa y la hacemos bien.</p></div>
+      </div>
+      <!-- ←EDITAR: nombres, cargos y fotos reales del equipo (fotos actuales: stock de Unsplash) -->
+      <div class="team-grid">
+        <article class="member">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80" alt="Mikel Aramburu" loading="lazy"><p class="mq">“Una herencia bien gestionada es la que la familia olvida rápido.”</p></div>
+          <div class="mi"><div><b>Mikel Aramburu</b><span>Responsable · Abogado sucesorio</span></div><a href="#" aria-label="LinkedIn de Mikel Aramburu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div>
+        </article>
+        <article class="member">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Laura Etxeberria" loading="lazy"><p class="mq">“Cada comunidad tiene sus reglas. Mi trabajo es que juegues con todas a favor.”</p></div>
+          <div class="mi"><div><b>Laura Etxeberria</b><span>Abogada fiscalista</span></div><a href="#" aria-label="LinkedIn de Laura Etxeberria"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div>
+        </article>
+        <article class="member">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Daniel Ortega" loading="lazy"><p class="mq">“Donde otros ven un bloqueo entre hermanos, yo veo un acuerdo pendiente.”</p></div>
+          <div class="mi"><div><b>Daniel Ortega</b><span>Especialista en proindivisos</span></div><a href="#" aria-label="LinkedIn de Daniel Ortega"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div>
+        </article>
+        <article class="member">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80" alt="Carmen Ruiz" loading="lazy"><p class="mq">“Te llamo yo. Nunca tendrás que perseguirnos.”</p></div>
+          <div class="mi"><div><b>Carmen Ruiz</b><span>Gestión y atención al cliente</span></div><a href="#" aria-label="LinkedIn de Carmen Ruiz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg></a></div>
+        </article>
       </div>
     </div>
   </section>
@@ -812,7 +1052,7 @@ html,body{margin:0;padding:0}
       <div class="cards">
         <!-- ←EDITAR src -->
         <a href="#calc" class="card"><img src="https://framerusercontent.com/images/tAxeWlqfhf7vnZa9GZ6vh1oYY3k.png?width=2400&amp;height=1680" alt="" loading="lazy"><div class="ov"></div><h3>Habla con nosotros</h3></a>
-        <a href="#" class="card"><img src="https://framerusercontent.com/images/AVum7b2zQgoQDB3w0ALcIFg30zE.png?width=2816&amp;height=1536" alt="" loading="lazy"><div class="ov"></div><h3>Conócenos</h3></a>
+        <a href="#equipo" class="card"><img src="https://framerusercontent.com/images/AVum7b2zQgoQDB3w0ALcIFg30zE.png?width=2816&amp;height=1536" alt="" loading="lazy"><div class="ov"></div><h3>Conócenos</h3></a>
       </div>
     </div>
   </section>
@@ -826,6 +1066,34 @@ html,body{margin:0;padding:0}
         <p>Pasado el plazo llegan recargos e intereses que se pueden evitar. Cuanto antes empieces, más podemos ahorrarte.</p>
       </div>
       <a href="#calc" class="btn btn-dark">Calcular lo que me corresponde</a>
+    </div>
+  </section>
+
+  <!-- LOCAL -->
+  <section id="local" class="local">
+    <div class="wrap">
+      <div class="local-grid">
+        <div class="local-card">
+          <span class="tag">Dónde estamos</span>
+          <h2 class="sec-h2">Oficina en Madrid, servicio en toda España</h2>
+          <p class="sec-lead">Trabajamos 100 % online, pero si prefieres vernos en persona, te esperamos con un café.</p>
+          <!-- ←EDITAR: dirección, horario, teléfono y email reales -->
+          <ul class="local-info">
+            <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>Dirección</b><span>Calle de Serrano 41, 2ª planta<br>28001 Madrid</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Horario</b><span>Lunes a viernes · 9:00 – 18:00<br>Videollamada con cita previa</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span><div><b>Teléfono</b><span><a href="tel:+34000000000">+34 000 000 000</a></span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><b>Email</b><span><a href="mailto:contacto@lienzolegal.com">contacto@lienzolegal.com</a></span></div></li>
+          </ul>
+          <div class="local-actions">
+            <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Calle+de+Serrano+41,+28001+Madrid" target="_blank" rel="noopener" class="btn btn-dark">Cómo llegar</a>
+            <a href="#calc" class="btn btn-pale">Calcular lo que me corresponde</a>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps?q=Calle+de+Serrano+41,+28001+Madrid&amp;z=16&amp;hl=es&amp;output=embed" title="Mapa de la oficina de Lienzo Legal" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div class="map-pin"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b>Lienzo Legal</b><span>Serrano 41 · Madrid</span></div></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -877,7 +1145,7 @@ html,body{margin:0;padding:0}
             <div class="foot-seals"><span>Abogados colegiados</span><span>RGPD</span><span>★ 4,9 Google</span></div> <!-- ←EDITAR sellos reales -->
           </div>
           <div><p class="foot-h">Servicios</p><ul><li><a href="#">Aceptación de herencia</a></li><li><a href="#">Impuesto de sucesiones</a></li><li><a href="#">Proindivisos</a></li><li><a href="#">Valorar vivienda</a></li></ul></div>
-          <div><p class="foot-h">Empresa</p><ul><li><a href="#">Sobre nosotros</a></li><li><a href="#">Blog</a></li><li><a href="#">Contacto</a></li></ul></div>
+          <div><p class="foot-h">Empresa</p><ul><li><a href="#equipo">Sobre nosotros</a></li><li><a href="#casos">Casos de éxito</a></li><li><a href="#local">Contacto</a></li></ul></div>
           <div><p class="foot-h">Legal</p><ul><li><a href="#">Política de Privacidad</a></li><li><a href="#">Aviso Legal</a></li><li><a href="#">Cookies</a></li></ul></div>
         </div>
         <div class="foot-bottom"><span>© 2026 Lienzo Legal</span><span>★ 4,9 en Google · +500 herencias gestionadas</span></div>
@@ -903,15 +1171,29 @@ html,body{margin:0;padding:0}
     var nav=$('#nav'), burger=$('#burger'), menu=$('#menu');
     function toggleMenu(open){ var o=open!=null?open:burger.getAttribute('aria-expanded')!=='true'; burger.setAttribute('aria-expanded',o); burger.setAttribute('aria-label',o?'Cerrar menú':'Abrir menú'); menu.classList.toggle('open',o); }
     burger.addEventListener('click',function(){ toggleMenu(); });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') toggleMenu(false); });
+    var isMobileNav=function(){ return getComputedStyle(burger).display!=='none'; };
+    var megas=$$('.has-mega');
+    function closeMegas(except){ megas.forEach(function(m){ if(m!==except){ m.classList.remove('open'); m.querySelector('.mega-trigger').setAttribute('aria-expanded','false'); } }); }
+    megas.forEach(function(m){
+      var t=m.querySelector('.mega-trigger'), timer;
+      function open(){ clearTimeout(timer); closeMegas(m); m.classList.add('open'); t.setAttribute('aria-expanded','true'); }
+      function close(){ timer=setTimeout(function(){ m.classList.remove('open'); t.setAttribute('aria-expanded','false'); },140); }
+      m.addEventListener('mouseenter',function(){ if(!isMobileNav()) open(); });
+      m.addEventListener('mouseleave',function(){ if(!isMobileNav()) close(); });
+      m.addEventListener('focusin',function(){ if(!isMobileNav()) open(); });
+      m.addEventListener('focusout',function(e){ if(!isMobileNav()&&!m.contains(e.relatedTarget)) close(); });
+      t.addEventListener('click',function(e){ if(isMobileNav()){ e.preventDefault(); var o=m.classList.contains('open'); closeMegas(); if(!o){ m.classList.add('open'); t.setAttribute('aria-expanded','true'); } } });
+    });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ toggleMenu(false); closeMegas(); } });
     $$('a[href^="#"]').forEach(function(a){ a.addEventListener('click',function(e){
       var id=a.getAttribute('href'); if(id.length<2) return;
-      var el=$(id); if(!el) return; e.preventDefault(); toggleMenu(false); el.scrollIntoView({behavior:'smooth'});
+      if(a.classList.contains('mega-trigger')&&isMobileNav()) return;
+      var el=$(id); if(!el) return; e.preventDefault(); toggleMenu(false); closeMegas(); el.scrollIntoView({behavior:'smooth'});
       if(id==='#calc') pushEv('click_calcular');
     }); });
     $$('a[href^="tel:"]').forEach(function(a){ a.addEventListener('click',function(){ pushEv('click_llamar'); }); });
     $$('a[href*="wa.me"]').forEach(function(a){ a.addEventListener('click',function(){ pushEv('click_whatsapp'); }); });
-    var navLinks=$$('.nav-links a'), secObs=new IntersectionObserver(function(es){
+    var navLinks=$$('.nav-links > a, .nav-links > .has-mega > a'), secObs=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+e.target.id); }); } });
     },{rootMargin:'-40% 0px -55% 0px'});
     navLinks.forEach(function(a){ var s=$(a.getAttribute('href')); if(s) secObs.observe(s); });
@@ -1109,7 +1391,9 @@ html,body{margin:0;padding:0}
       ['.vtext',''],['.video-frame','rev-r'],
       ['.calc-grid > div',''],['.guar',''],
       ['.serv-head',''],['.serv','rev-s'],['.serv-cta',''],
-      ['.proof-head',''],['.review','rev-s'],['.case','rev-s'],
+      ['.proof-head',''],['.review','rev-s'],['.case-card','rev-s'],
+      ['.team-head > *',''],['.principle',''],['.member','rev-s'],
+      ['.local-card','rev-l'],['.map-wrap','rev-r'],
       ['.urgency-band .wrap > div',''],['.card','rev-s'],
       ['.faq-side','rev-l'],['.qa',''],['.finalcta .inner','rev-s'],
       ['.foot-cta',''],['.foot-mid > div','']
@@ -1128,7 +1412,7 @@ html,body{margin:0;padding:0}
       requestAnimationFrame(step);
     }
     var ioN=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); ioN.unobserve(e.target); } }); },{threshold:.6});
-    $$('.qstats .big').forEach(function(el){ ioN.observe(el); });
+    $$('.qstats .big, .case-big').forEach(function(el){ ioN.observe(el); });
 
     var fc=$('.finalcta img');
     function parallax(){ var r=fc.parentElement.getBoundingClientRect(); fc.style.transform='translateY('+((r.top+r.height/2-window.innerHeight/2)*-0.06)+'px) scale(1.12)'; }
