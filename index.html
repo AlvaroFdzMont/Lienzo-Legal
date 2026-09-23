@@ -24,6 +24,7 @@
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=archivo@600&display=swap" rel="stylesheet">
 
 <style>
+html,body{margin:0;padding:0}
 #ll *{margin:0;padding:0;box-sizing:border-box}
 #ll{
   --green-d:#2D464A; --green:#3C5A5F; --brand:#937E5E; --brand-d:#826E50;
@@ -85,7 +86,8 @@
 @keyframes ll-nav-in{from{opacity:0; transform:translateY(-12px)}to{opacity:1; transform:none}}
 
 /* Hero */
-#ll .hero .wrap{display:grid; grid-template-columns:minmax(0,420px) minmax(0,1fr); gap:64px; align-items:center; padding-top:80px; padding-bottom:80px; min-height:84vh}
+#ll .hero{padding:0}
+#ll .hero .wrap{display:grid; grid-template-columns:minmax(0,420px) minmax(0,1fr); gap:64px; align-items:center; padding-top:40px; padding-bottom:72px}
 #ll .hero .wrap > *{min-width:0}
 #ll .hero h1{font-size:clamp(40px,5.4vw,72px); letter-spacing:-.04em; line-height:1.02; margin-bottom:22px}
 #ll .hero h1 .w{display:inline-block; overflow:hidden; vertical-align:bottom; padding:0 .04em .1em 0; margin:0 -.04em -.1em 0}
@@ -107,7 +109,7 @@
 #ll .marquee-track span:hover{color:var(--brand)}
 @keyframes ll-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 #ll .hero-tag{margin-bottom:18px}
-#ll .hero-media{position:relative; border-radius:12px; overflow:hidden; height:78vh; max-height:680px}
+#ll .hero-media{position:relative; border-radius:12px; overflow:hidden; height:calc(100vh - var(--nav-h) - 112px); min-height:460px; max-height:620px}
 #ll .hero-badge{display:none}
 #ll .hero-media img{width:100%; height:100%; object-fit:cover}
 
@@ -412,7 +414,9 @@
   #ll .proc-img{aspect-ratio:1}
   #ll .pstep.on .pbody{transform:none}
   #ll .quote-img{min-height:340px}
-  #ll .faq-side{position:static; text-align:center}
+  #ll .faq-grid{gap:32px}
+  #ll .faq-side{position:static; text-align:center; width:100%; max-width:520px; margin:0 auto; justify-self:center; padding:28px 24px}
+  #ll.js .faq-side.reveal.in{transform:none}
   #ll .faq-side .btn{width:100%; justify-content:center}
   #ll .serv-grid,#ll .cards{grid-template-columns:minmax(0,1fr)}
   #ll .serv{padding:18px; gap:14px}
